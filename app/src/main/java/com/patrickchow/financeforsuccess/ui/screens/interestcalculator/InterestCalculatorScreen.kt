@@ -1,7 +1,7 @@
 package com.patrickchow.financeforsuccess.ui.screens.interestcalculator
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -14,91 +14,57 @@ import com.patrickchow.financeforsuccess.dataclass.CalculatorItem
 import com.patrickchow.financeforsuccess.ui.common.CustomAppBar
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.rememberScrollState
-
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Info
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import com.patrickchow.financeforsuccess.ui.common.CalculateButton
+import com.patrickchow.financeforsuccess.ui.common.CalculatedText
+import com.patrickchow.financeforsuccess.ui.common.ExplanationBottomSheet
+import com.patrickchow.financeforsuccess.ui.common.CustomTooltip
 
 @Composable
-fun InterestCalculatorScreen(calculatorItem: CalculatorItem, navController: NavController) {
-    val viewModel: InterestCalculatorViewModel = viewModel()
-    val scrollState = rememberScrollState()
+fun CustomTextField(
+    value: String,
+    onValueChange: (String) -> Unit,
+    label: String,
+    keyboardType: KeyboardType,
+    tooltipMessage: String? = null,
+    bottomSheetContent: String? = null, // Add content for bottom sheet explanation
+    modifier: Modifier = Modifier
+) {
+    var showBottomSheet by remember { mutableStateOf(false) }
 
-    Scaffold(
-        topBar = {
-            CustomAppBar(
-                title = calculatorItem.title,
-                onBackClick = { navController.popBackStack() }
-            )
-        }
-    ) { innerPadding ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-                .padding(16.dp)
-                .verticalScroll(scrollState),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Top
-        ) {
-            Spacer(modifier = Modifier.height(8.dp))
-
-            OutlinedTextField(
-                value = viewModel.principal,
-                onValueChange = {
-                    // Only update if the input is a number
-                    if (it.all { char -> char.isDigit() || char == '.' }) {
-                        viewModel.principal = it
-                    }
-                },
-                label = { Text("Principal Amount") },
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                modifier = Modifier.fillMaxWidth()
-            )
-
-            Spacer(modifier = Modifier.height(8.dp))
-
-            OutlinedTextField(
-                value = viewModel.rate,
-                onValueChange = {
-                    // Only update if the input is a number
-                    if (it.all { char -> char.isDigit() || char == '.' }) {
-                        viewModel.rate = it
-                    }
-                },
-                label = { Text("Interest Rate (%)") },
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                modifier = Modifier.fillMaxWidth()
-            )
-
-            Spacer(modifier = Modifier.height(8.dp))
-
-            OutlinedTextField(
-                value = viewModel.time,
-                onValueChange = {
-                    // Only update if the input is a number
-                    if (it.all { char -> char.isDigit() }) {
-                        viewModel.time = it
-                    }
-                },
-                label = { Text("Time (years)") },
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                modifier = Modifier.fillMaxWidth()
-            )
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            Button(onClick = { viewModel.calculateInterest() }) {
-                Text("Calculate")
+    Column {
+        TextField(
+            value = value,
+            onValueChange = onValueChange,
+            label = { Text(label) },
+            keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
+            modifier = modifier.fillMaxWidth(),
+            trailingIcon = {
+                if (tooltipMessage != null) {
+                    Icon(
+                        imageVector = Icons.Filled.Info,
+                        contentDescription = "Info",
+                        tint = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier.clickable {
+                            showBottomSheet = true // Show the bottom sheet when the icon is clicked
+                        }
+                    )
+                }
             }
+        )
 
-            Spacer(modifier = Modifier.height(16.dp))
-
-            Text(
-                text = "Calculated Interest: ${viewModel.result}",
-                style = MaterialTheme.typography.bodyLarge
-            )
-            Text(
-                text = "Total Value: ${viewModel.total}",
-                style = MaterialTheme.typography.bodyLarge
+        if (showBottomSheet && bottomSheetContent != null) {
+            ExplanationBottomSheet(
+                message = bottomSheetContent,
+                onDismiss = { showBottomSheet = false } // Close the bottom sheet
             )
         }
     }
 }
+
