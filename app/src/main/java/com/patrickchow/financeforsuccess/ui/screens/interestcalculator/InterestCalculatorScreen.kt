@@ -12,10 +12,14 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.patrickchow.financeforsuccess.dataclass.CalculatorItem
 import com.patrickchow.financeforsuccess.ui.common.CustomAppBar
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.rememberScrollState
+
 
 @Composable
 fun InterestCalculatorScreen(calculatorItem: CalculatorItem, navController: NavController) {
     val viewModel: InterestCalculatorViewModel = viewModel()
+    val scrollState = rememberScrollState()
 
     Scaffold(
         topBar = {
@@ -29,7 +33,8 @@ fun InterestCalculatorScreen(calculatorItem: CalculatorItem, navController: NavC
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
-                .padding(16.dp),
+                .padding(16.dp)
+                .verticalScroll(scrollState),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top
         ) {
