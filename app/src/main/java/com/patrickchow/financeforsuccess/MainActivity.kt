@@ -12,6 +12,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import com.patrickchow.financeforsuccess.dataClass.CalculatorItem
+import com.patrickchow.financeforsuccess.dataClass.calculatorItems
+import com.patrickchow.financeforsuccess.navigation.NavigationGraph
+import com.patrickchow.financeforsuccess.navigation.ScreenType
 import com.patrickchow.financeforsuccess.ui.theme.FinanceForSuccessTheme
 import com.patrickchow.financeforsuccess.ui.common.CalculatorCard
 
@@ -21,43 +27,14 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             FinanceForSuccessTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MainScreen()
+                    val navController = rememberNavController()
+                    NavigationGraph(navController = navController)
                 }
             }
-        }
-    }
-}
-
-@Composable
-fun MainScreen() {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text = "Finance For Success!",
-            style = MaterialTheme.typography.headlineMedium,
-            modifier = Modifier.padding(bottom = 16.dp)
-        )
-
-        // Define the type of calculator functions
-        val calculatorFunctions: List<Pair<String, Int>> = listOf(
-            Pair("Interest Calculator", R.drawable.interest),
-            Pair("Tips Calculator", R.drawable.tips),
-            Pair("Future Value Calculator", R.drawable.future_value),
-            Pair("Present Value Calculator", R.drawable.present_value),
-        )
-
-        // Display calculator cards
-        for (function in calculatorFunctions) {
-            CalculatorCard(functionName = function.first, imageResId = function.second)
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.patrickchow.financeforsuccess.ui.common
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -16,15 +17,18 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import com.patrickchow.financeforsuccess.navigation.ScreenType
 
 @Composable
-fun CalculatorCard(functionName: String, imageResId: Int) {
+fun CalculatorCard(functionName: String, imageResId: Int, navController: NavController, screenType: ScreenType) {
     Card(
         shape = RoundedCornerShape(8.dp),
         elevation = CardDefaults.cardElevation(4.dp),
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 8.dp)
+            .clickable { navController.navigate(screenType.name)}
     ) {
         Row(
             modifier = Modifier.padding(16.dp),
