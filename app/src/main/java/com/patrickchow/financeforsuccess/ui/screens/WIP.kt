@@ -21,18 +21,16 @@ fun WIP(calculatorItem: CalculatorItem, navController: NavController) {
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
-        // Custom App Bar with Back Button
         CustomAppBar(
-            title = calculatorItem.title, // Set a title for the app bar
-            onBackClick = { navController.popBackStack() } // Handle back navigation
+            title = calculatorItem.title,
+            onBackClick = { navController.popBackStack() }
         )
 
-        // Center content inside a Box below the App Bar
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(20.dp), // Fill the remaining screen space
-            contentAlignment = Alignment.Center // Center content inside the Box
+                .padding(20.dp),
+            contentAlignment = Alignment.Center
         ) {
             Text(
                 text = "${calculatorItem.title} is a Work in Progress!",

@@ -14,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.patrickchow.financeforsuccess.R
 
 @Composable
@@ -29,8 +28,8 @@ fun CustomAppBar(title: String, onBackClick: () -> Unit) {
             painter = painterResource(id = R.drawable.back),
             contentDescription = "Back",
             modifier = Modifier
-                .size(40.dp) // Set the desired size for the image
-                .padding(end = 16.dp) // Add space between the image and text
+                .size(40.dp)
+                .padding(end = 16.dp)
                 .clickable { onBackClick() }
         )
 
