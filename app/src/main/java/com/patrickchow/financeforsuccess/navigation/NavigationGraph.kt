@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.patrickchow.financeforsuccess.dataClass.calculatorItems
-import com.patrickchow.financeforsuccess.dataClass.getScreenTypeIndex
+import com.patrickchow.financeforsuccess.dataclass.calculatorItems
+import com.patrickchow.financeforsuccess.dataclass.getScreenTypeIndex
 import com.patrickchow.financeforsuccess.ui.screens.*
 
 @Composable

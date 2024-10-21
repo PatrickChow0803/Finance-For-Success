@@ -12,8 +12,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.patrickchow.financeforsuccess.dataClass.CalculatorItem
-import com.patrickchow.financeforsuccess.navigation.ScreenType
+import com.patrickchow.financeforsuccess.dataclass.CalculatorItem
 import com.patrickchow.financeforsuccess.ui.common.CustomAppBar
 
 @Composable
