@@ -36,3 +36,7 @@ val calculatorItems = listOf(
         screen = ScreenType.CurrencyConverter
     ),
 )
+
+fun getScreenTypeIndex(screenType: ScreenType): Int {
+    return calculatorItems.indexOfFirst { it.screen == screenType }
+}

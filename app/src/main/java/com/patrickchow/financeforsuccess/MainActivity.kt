@@ -27,14 +27,12 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             FinanceForSuccessTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    val navController = rememberNavController() // Create NavController
-                    NavigationGraph(navController = navController) // Use the NavigationGraph
-//                    MainScreen(navController)
+                    val navController = rememberNavController()
+                    NavigationGraph(navController = navController)
                 }
             }
         }
