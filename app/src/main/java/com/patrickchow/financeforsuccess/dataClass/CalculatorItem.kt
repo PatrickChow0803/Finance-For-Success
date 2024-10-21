@@ -23,16 +23,16 @@ val calculatorItems = listOf(
     CalculatorItem(
         title = "Future Value Calculator",
         icon = R.drawable.future_value,
-        screen = ScreenType.InterestCalculator
+        screen = ScreenType.FutureCalculator
     ),
     CalculatorItem(
         title = "Present Value Calculator",
         icon = R.drawable.present_value,
-        screen = ScreenType.InterestCalculator
+        screen = ScreenType.PresentCalculator
     ),
     CalculatorItem(
         title = "Currency Exchange",
         icon = R.drawable.exchange,
-        screen = ScreenType.InterestCalculator
+        screen = ScreenType.CurrencyConverter
     ),
 )
