@@ -12,8 +12,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.patrickchow.financeforsuccess.dataClass.CalculatorItem
 import com.patrickchow.financeforsuccess.dataClass.calculatorItems
+import com.patrickchow.financeforsuccess.navigation.NavigationGraph
 import com.patrickchow.financeforsuccess.navigation.ScreenType
 import com.patrickchow.financeforsuccess.ui.theme.FinanceForSuccessTheme
 import com.patrickchow.financeforsuccess.ui.common.CalculatorCard
@@ -29,30 +32,11 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MainScreen()
+                    val navController = rememberNavController() // Create NavController
+                    NavigationGraph(navController = navController) // Use the NavigationGraph
+//                    MainScreen(navController)
                 }
             }
-        }
-    }
-}
-
-@Composable
-fun MainScreen() {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text = "Finance For Success!",
-            style = MaterialTheme.typography.headlineMedium,
-            modifier = Modifier.padding(bottom = 16.dp)
-        )
-
-        // Display calculator cards
-        for (item in calculatorItems) {
-            CalculatorCard(functionName = item.title, imageResId = item.icon)
         }
     }
 }
