@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Finance For Success</string>
+    <string name="principal_amount_label">Principal Amount</string>
+    <string name="principal_amount_tooltip">The initial amount of money on which interest is calculated.</string>
+
+    <string name="interest_rate_label">Interest Rate (%)</string>
+    <string name="interest_rate_tooltip">The percentage of interest to be applied.</string>
+
+    <string name="time_label">Time (years)</string>
+    <string name="time_tooltip">The time period in years.</string>
+
+    <string name="calculate_compound_interest">Compound Interest</string>
+    <string name="calculate_simple_interest">Simple Interest</string>
+
+    <string name="calculated_interest_label">Calculated Interest:</string>
+    <string name="calculated_total_label">Calculated Total:</string>
 </resources>

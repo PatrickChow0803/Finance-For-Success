@@ -13,6 +13,9 @@ import com.patrickchow.financeforsuccess.dataclass.CalculatorItem
 import com.patrickchow.financeforsuccess.ui.common.CustomAppBar
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import com.patrickchow.financeforsuccess.R
 import com.patrickchow.financeforsuccess.dataclass.ModalSheetType
 import com.patrickchow.financeforsuccess.dataclass.getModalSheetTypeIndex
 import com.patrickchow.financeforsuccess.dataclass.listOfModalSheetInformation
@@ -43,11 +46,12 @@ fun InterestCalculatorScreen(calculatorItem: CalculatorItem, navController: NavC
             horizontalAlignment = Alignment.Start,
             verticalArrangement = Arrangement.Top
         ) {
+
             NumberTextField(
                 value = viewModel.principal.value,
                 onValueChange = { viewModel.onPrincipalChange(it) },
-                label = "Principal Amount",
-                tooltipMessage = "The initial amount of money on which interest is calculated.",
+                label = stringResource(id = R.string.principal_amount_label),
+                tooltipMessage = stringResource(id = R.string.principal_amount_tooltip),
                 modalSheetInfo = listOfModalSheetInformation[getModalSheetTypeIndex(ModalSheetType.Principal)],
             )
 
@@ -56,8 +60,8 @@ fun InterestCalculatorScreen(calculatorItem: CalculatorItem, navController: NavC
             NumberTextField(
                 value = viewModel.rate.value,
                 onValueChange = { viewModel.onRateChange(it) },
-                label = "Interest Rate (%)",
-                tooltipMessage = "The percentage of interest to be applied.",
+                label = stringResource(id = R.string.interest_rate_label),
+                tooltipMessage = stringResource(id = R.string.interest_rate_tooltip),
                 modalSheetInfo = listOfModalSheetInformation[getModalSheetTypeIndex(ModalSheetType.Interest)],
             )
 
@@ -66,22 +70,23 @@ fun InterestCalculatorScreen(calculatorItem: CalculatorItem, navController: NavC
             NumberTextField(
                 value = viewModel.time.value,
                 onValueChange = { viewModel.onTimeChange(it) },
-                label = "Time (years)",
-                tooltipMessage = "The time period in years.",
+                label = stringResource(id = R.string.time_label),
+                tooltipMessage = stringResource(id = R.string.time_tooltip),
                 modalSheetInfo = listOfModalSheetInformation[getModalSheetTypeIndex(ModalSheetType.Time)],
             )
 
             UIUtility.MediumSpacer()
 
-            CalculateButton(onClick = { viewModel.calculateCompoundInterest(numberOfCompoundPerYear = 1) }, displayText = "Compound Interest")
-            CalculateButton(onClick = { viewModel.calculateInterest() }, displayText = "Simple Interest")
+            CalculateButton(onClick = { viewModel.calculateCompoundInterest(numberOfCompoundPerYear = 1) }, displayText = stringResource(id = R.string.calculate_compound_interest))
+            CalculateButton(onClick = { viewModel.calculateInterest() }, displayText = stringResource(id = R.string.calculate_simple_interest))
 
             Spacer(modifier = Modifier.height(16.dp))
             UIUtility.MediumSpacer()
 
-            CalculatedText(text = "Calculated Interest:", result = viewModel.result.value)
+            CalculatedText(text = stringResource(id = R.string.calculated_interest_label), result = viewModel.result.value)
             UIUtility.SmallSpacer()
-            CalculatedText(text = "Calculated Total:", result = viewModel.total.value)
+            CalculatedText(text = stringResource(id = R.string.calculated_total_label), result = viewModel.total.value)
+
         }
     }
 }
