@@ -8,16 +8,23 @@ import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
+import com.patrickchow.financeforsuccess.R
 import com.patrickchow.financeforsuccess.dataclass.ModalSheetInformation
 import com.patrickchow.financeforsuccess.util.CustomRegex
 
+/**
+ *  The standard number input field for this app.
+ *  Makes is so that only numbers, a single decimal, and two decimal places are allowed.
+ *  Also includes a tooltip to help users understand a field that opens up a bottom sheet to explain
+ *  */
+
 @Composable
-fun CustomTextField(
+fun NumberTextField(
     value: String,
     onValueChange: (String) -> Unit,
     label: String,
-    keyboardType: KeyboardType,
     tooltipMessage: String? = null,
     modalSheetInfo: ModalSheetInformation? = null,
     modifier: Modifier = Modifier
@@ -36,16 +43,16 @@ fun CustomTextField(
                 }
             },
             label = { Text(label) },
-            keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             modifier = modifier.fillMaxWidth(),
             trailingIcon = {
                 if (tooltipMessage != null) {
                     Icon(
                         imageVector = Icons.Filled.Info,
-                        contentDescription = "Info",
+                        contentDescription = stringResource(R.string.tooltip_content_description),
                         tint = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.clickable {
-                            showBottomSheet = true // Show the bottom sheet when the icon is clicked
+                            showBottomSheet = true
                         }
                     )
                 }

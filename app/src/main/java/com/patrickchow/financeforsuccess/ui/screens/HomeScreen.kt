@@ -8,8 +8,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.patrickchow.financeforsuccess.R
 import com.patrickchow.financeforsuccess.dataclass.calculatorItems
 import com.patrickchow.financeforsuccess.ui.common.CalculatorCard
 
@@ -22,7 +24,7 @@ fun HomeScreen(navController: NavController) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Finance For Success!",
+            text = stringResource(id = R.string.home_screen_title),
             style = MaterialTheme.typography.headlineMedium,
             modifier = Modifier.padding(bottom = 16.dp)
         )

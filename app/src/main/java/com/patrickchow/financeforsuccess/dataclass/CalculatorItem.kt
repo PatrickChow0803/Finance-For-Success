@@ -9,6 +9,7 @@ data class CalculatorItem(
     val screen: ScreenType
 )
 
+// TODO: Convert this to use String resources instead
 val calculatorItems = listOf(
     CalculatorItem(
         title = "Interest Calculator",
@@ -19,11 +20,6 @@ val calculatorItems = listOf(
         title = "Tips Calculator",
         icon = R.drawable.tips,
         screen = ScreenType.TipCalculator
-    ),
-    CalculatorItem(
-        title = "Future Value Calculator",
-        icon = R.drawable.future_value,
-        screen = ScreenType.FutureCalculator
     ),
     CalculatorItem(
         title = "Present Value Calculator",

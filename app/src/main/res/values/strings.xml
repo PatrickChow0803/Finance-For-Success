@@ -1,3 +1,64 @@
 <resources>
     <string name="app_name">Finance For Success</string>
+
+    <!-- Home Screen -->
+
+    <string name="home_screen_title">Finance For Success!</string>
+
+    <!-- Interest Calculator Screen -->
+    <string name="principal_amount_label">Principal Amount</string>
+    <string name="principal_amount_tooltip">The initial amount of money on which interest is calculated.</string>
+
+    <string name="interest_rate_label">Interest Rate (%)</string>
+    <string name="interest_rate_tooltip">The percentage of interest to be applied.</string>
+
+    <string name="time_label">Time (years)</string>
+    <string name="time_tooltip">The time period in years.</string>
+
+    <string name="calculate_compound_interest">Compound Interest</string>
+    <string name="calculate_simple_interest">Simple Interest</string>
+
+    <string name="calculated_interest_label">Calculated Interest:</string>
+    <string name="calculated_total_label">Calculated Total:</string>
+
+    <string name="compounding_periods_label">Compounding Periods per Year</string>
+    <string name="compounding_periods_tooltip">Enter the number of times interest is compounded per year.</string>
+
+    <!-- Tips Calculator Screen -->
+
+    <string name="bill_amount_label">Bill Amount</string>
+    <string name="bill_amount_tooltip">Enter the total bill amount.</string>
+
+    <string name="tip_percentage_label">Tip Percentage (%)</string>
+    <string name="tip_percentage_tooltip">Enter the desired tip percentage.</string>
+
+    <string name="calculated_tip_label">Calculated Tip:</string>
+    <string name="total_amount_label">Total Amount:</string>
+
+    <string name="calculate_button_text">Calculate</string>
+
+    <!-- Present Value Screen -->
+
+    <string name="nper_label">Number of Payments (Nper)</string>
+    <string name="nper_tooltip">The total number of payments.</string>
+
+    <string name="payment_amount_label">Payment Amount</string>
+    <string name="payment_amount_tooltip">The amount of each payment.</string>
+
+    <string name="future_value_label">Future Value (Optional)</string>
+    <string name="future_value_tooltip">The value you want to calculate the present value for.</string>
+
+    <string name="payment_type_label">Payment Type:</string>
+    <string name="calculate_present_value">Present Value</string>
+
+    <string name="calculated_present_value_label">Calculated Present Value:</string>
+
+    <string name="payment_type_beginning">Beginning</string>
+    <string name="payment_type_end">End</string>
+
+    <!-- WIP Screen -->
+    <string name="wip_description">is a Work in Progress!</string>
+
+    <!-- Help -->
+    <string name="tooltip_content_description">Info</string>
 </resources>

@@ -8,7 +8,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.patrickchow.financeforsuccess.ui.screens.*
 import com.patrickchow.financeforsuccess.ui.screens.interestcalculator.InterestCalculatorScreen
-import com.patrickchow.financeforsuccess.ui.screens.tipsCalculator.TipsCalculatorScreen
+import com.patrickchow.financeforsuccess.ui.screens.presentvalue.PresentValueScreen
+import com.patrickchow.financeforsuccess.ui.screens.tipscalculator.TipsCalculatorScreen
 
 @Composable
 fun NavigationGraph(navController: NavHostController) {
@@ -16,8 +17,7 @@ fun NavigationGraph(navController: NavHostController) {
         composable("home") { HomeScreen(navController) }
         composable(ScreenType.InterestCalculator.name) { InterestCalculatorScreen(calculatorItems[getScreenTypeIndex(ScreenType.InterestCalculator)],navController)}
         composable(ScreenType.TipCalculator.name) { TipsCalculatorScreen(calculatorItems[getScreenTypeIndex(ScreenType.TipCalculator)], navController) }
-        composable(ScreenType.FutureCalculator.name) { WIP(calculatorItems[getScreenTypeIndex(ScreenType.FutureCalculator)], navController) }
-        composable(ScreenType.PresentCalculator.name) { WIP(calculatorItems[getScreenTypeIndex(ScreenType.PresentCalculator)], navController) }
+        composable(ScreenType.PresentCalculator.name) { PresentValueScreen(calculatorItems[getScreenTypeIndex(ScreenType.PresentCalculator)], navController) }
         composable(ScreenType.CurrencyConverter.name) { WIP(calculatorItems[getScreenTypeIndex(ScreenType.CurrencyConverter)], navController) }
     }
 }

@@ -12,9 +12,18 @@ class MathFormulas {
             return (p * r * t) / 100
         }
 
-        // Calculate tip
         fun calculateTip(bill: Double, tipPercent: Double): Double {
             return bill * (tipPercent / 100)
         }
+
+        fun calculatePV(rate: Double, nper: Int, pmt: Double, fv: Double = 0.0, type: Int = 0): Double {
+            val pvFactor = if (type == 0) {
+                (1 - Math.pow(1 + rate, (-nper).toDouble())) / rate
+            } else {
+                (1 - Math.pow(1 + rate, (-nper).toDouble())) / rate * (1 + rate)
+            }
+            return -pmt * pvFactor + fv / Math.pow(1 + rate, nper.toDouble())
+        }
+
     }
 }

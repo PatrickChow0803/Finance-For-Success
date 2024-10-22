@@ -1,88 +1,78 @@
 package com.patrickchow.financeforsuccess.ui.screens.interestcalculator
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.patrickchow.financeforsuccess.dataclass.CalculatorItem
-import com.patrickchow.financeforsuccess.ui.common.CustomAppBar
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.ui.res.stringResource
+import com.patrickchow.financeforsuccess.R
 import com.patrickchow.financeforsuccess.dataclass.ModalSheetType
 import com.patrickchow.financeforsuccess.dataclass.getModalSheetTypeIndex
 import com.patrickchow.financeforsuccess.dataclass.listOfModalSheetInformation
+import com.patrickchow.financeforsuccess.ui.common.AppScaffold
 import com.patrickchow.financeforsuccess.ui.common.CalculateButton
 import com.patrickchow.financeforsuccess.ui.common.CalculatedText
-import com.patrickchow.financeforsuccess.ui.common.CustomTextField
+import com.patrickchow.financeforsuccess.ui.common.NumberTextField
+import com.patrickchow.financeforsuccess.ui.common.UIUtility
+import com.patrickchow.financeforsuccess.ui.extensions.customScrollableColumn
 
 @Composable
 fun InterestCalculatorScreen(calculatorItem: CalculatorItem, navController: NavController) {
     val viewModel: InterestCalculatorViewModel = viewModel()
     val scrollState = rememberScrollState()
 
-    Scaffold(
-        topBar = {
-            CustomAppBar(
-                title = calculatorItem.title,
-                onBackClick = { navController.popBackStack() }
-            )
-        }
+    AppScaffold(
+        title = calculatorItem.title, navController = navController
     ) { innerPadding ->
         Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-                .padding(16.dp)
-                .verticalScroll(scrollState),
+            modifier = Modifier.customScrollableColumn(scrollState, innerPadding),
             horizontalAlignment = Alignment.Start,
             verticalArrangement = Arrangement.Top
         ) {
-            CustomTextField(
+
+            NumberTextField(
                 value = viewModel.principal.value,
                 onValueChange = { viewModel.onPrincipalChange(it) },
-                label = "Principal Amount",
-                keyboardType = KeyboardType.Number,
-                tooltipMessage = "The initial amount of money on which interest is calculated.",
+                label = stringResource(id = R.string.principal_amount_label),
+                tooltipMessage = stringResource(id = R.string.principal_amount_tooltip),
                 modalSheetInfo = listOfModalSheetInformation[getModalSheetTypeIndex(ModalSheetType.Principal)],
             )
 
-            Spacer(modifier = Modifier.height(8.dp))
+            UIUtility.SmallSpacer()
 
-            CustomTextField(
+            NumberTextField(
                 value = viewModel.rate.value,
                 onValueChange = { viewModel.onRateChange(it) },
-                label = "Interest Rate (%)",
-                keyboardType = KeyboardType.Number,
-                tooltipMessage = "The percentage of interest to be applied.",
+                label = stringResource(id = R.string.interest_rate_label),
+                tooltipMessage = stringResource(id = R.string.interest_rate_tooltip),
                 modalSheetInfo = listOfModalSheetInformation[getModalSheetTypeIndex(ModalSheetType.Interest)],
             )
 
-            Spacer(modifier = Modifier.height(8.dp))
+            UIUtility.SmallSpacer()
 
-            CustomTextField(
+            NumberTextField(
                 value = viewModel.time.value,
                 onValueChange = { viewModel.onTimeChange(it) },
-                label = "Time (years)",
-                keyboardType = KeyboardType.Number,
-                tooltipMessage = "The time period in years.",
+                label = stringResource(id = R.string.time_label),
+                tooltipMessage = stringResource(id = R.string.time_tooltip),
                 modalSheetInfo = listOfModalSheetInformation[getModalSheetTypeIndex(ModalSheetType.Time)],
             )
 
-            Spacer(modifier = Modifier.height(16.dp))
-
-            CalculateButton(onClick = { viewModel.calculateCompoundInterest(numberOfCompoundPerYear = 1) }, displayText = "Compound Interest")
-            CalculateButton(onClick = { viewModel.calculateInterest() }, displayText = "Simple Interest")
+            UIUtility.MediumSpacer()
+            CalculateButton(onClick = { viewModel.calculateInterest() }, displayText = stringResource(id = R.string.calculate_simple_interest))
 
             Spacer(modifier = Modifier.height(16.dp))
+            UIUtility.MediumSpacer()
 
-            CalculatedText(text = "Calculated Interest:", result = viewModel.result.value)
-            Spacer(modifier = Modifier.height(6.dp))
-            CalculatedText(text = "Calculated Total:", result = viewModel.total.value)
+            CalculatedText(text = stringResource(id = R.string.calculated_interest_label), result = viewModel.result.value)
+            UIUtility.SmallSpacer()
+            CalculatedText(text = stringResource(id = R.string.calculated_total_label), result = viewModel.total.value)
+
         }
     }
 }

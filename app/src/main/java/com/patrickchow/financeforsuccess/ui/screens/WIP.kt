@@ -9,9 +9,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.patrickchow.financeforsuccess.R
 import com.patrickchow.financeforsuccess.dataclass.CalculatorItem
 import com.patrickchow.financeforsuccess.ui.common.CustomAppBar
 
@@ -32,7 +34,7 @@ fun WIP(calculatorItem: CalculatorItem, navController: NavController) {
             contentAlignment = Alignment.Center
         ) {
             Text(
-                text = "${calculatorItem.title} is a Work in Progress!",
+                text = "${calculatorItem.title} ${stringResource(id = R.string.wip_description)}",
                 fontSize = 20.sp,
                 color = Color.Gray
             )

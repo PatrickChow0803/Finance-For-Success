@@ -46,15 +46,15 @@ class InterestCalculatorViewModel : ViewModel() {
         _total.value = CustomRegex.decimalFormat.format(totalAmount)
     }
 
-    fun calculateCompoundInterest(numberOfCompoundPerYear: Int) {
-        val p = _principal.value.toDoubleOrNull() ?: return
-        val r = _rate.value.toDoubleOrNull()?.div(100) ?: return // Convert percentage to decimal
-        val t = _time.value.toDoubleOrNull() ?: return
-
-        val amount = MathFormulas.calculateCompoundInterest(p, r, numberOfCompoundPerYear, t)
-        val interest = amount - p
-
-        _result.value = CustomRegex.decimalFormat.format(interest)
-        _total.value = CustomRegex.decimalFormat.format(amount)
-    }
+//    fun calculateCompoundInterest(numberOfCompoundPerYear: Int) {
+//        val p = _principal.value.toDoubleOrNull() ?: return
+//        val r = _rate.value.toDoubleOrNull()?.div(100) ?: return // Convert percentage to decimal
+//        val t = _time.value.toDoubleOrNull() ?: return
+//
+//        val amount = MathFormulas.calculateCompoundInterest(p, r, numberOfCompoundPerYear, t)
+//        val interest = amount - p //
+//
+//        _result.value = CustomRegex.decimalFormat.format(interest)
+//        _total.value = CustomRegex.decimalFormat.format(amount)
+//    }
 }
