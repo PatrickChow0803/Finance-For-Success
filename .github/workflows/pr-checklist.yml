@@ -1,0 +1,22 @@
+name: "Check PR Checklist"
+
+on:
+  pull_request:
+    types: [opened, edited]
+
+jobs:
+  checklist:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check PR checklist
+      uses: kentaro-m/auto-approve-action@v2
+      id: pr-checklist
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Fail if checklist is incomplete
+      run: |
+        if ! grep -q "\- \[x\]" "${{ github.event.pull_request.body }}"; then
+          echo "Checklist is not complete. Please complete the checklist before merging."
+          exit 1
+        fi
