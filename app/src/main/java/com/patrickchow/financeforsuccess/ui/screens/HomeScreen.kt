@@ -29,7 +29,6 @@ fun HomeScreen(navController: NavController) {
             modifier = Modifier.padding(bottom = 16.dp)
         )
 
-        // Display calculator cards
         for (item in calculatorItems) {
             CalculatorCard(
                 functionName = item.title,
