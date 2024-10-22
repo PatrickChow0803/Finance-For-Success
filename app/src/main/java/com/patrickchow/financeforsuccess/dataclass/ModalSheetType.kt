@@ -9,4 +9,5 @@ enum class ModalSheetType {
     Nper,
     FV,
     Pmt,
+    PV,
 }

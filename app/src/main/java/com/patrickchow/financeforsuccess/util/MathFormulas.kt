@@ -2,10 +2,6 @@ package com.patrickchow.financeforsuccess.util
 
 class MathFormulas {
     companion object {
-        // Calculate compound interest: A = P (1 + r/n)^(nt)
-        fun calculateCompoundInterest(p: Double, r: Double, numberOfCompoundPerYear: Int, t: Double): Double {
-            return p * Math.pow((1 + r / numberOfCompoundPerYear), (numberOfCompoundPerYear * t))
-        }
 
         // Calculate simple interest: SI = (P * R * T) / 100
         fun calculateSimpleInterest(p: Double, r: Double, t: Double): Double {
@@ -16,14 +12,27 @@ class MathFormulas {
             return bill * (tipPercent / 100)
         }
 
-        fun calculatePV(rate: Double, nper: Int, pmt: Double, fv: Double = 0.0, type: Int = 0): Double {
-            val pvFactor = if (type == 0) {
-                (1 - Math.pow(1 + rate, (-nper).toDouble())) / rate
+        fun calculateFV(rate: Double, nper: Int, pmt: Double, pv: Double = 0.0, type: Int = 0): Double {
+            // Contributions at the end of the period
+            return if (type == 0) {
+                pv * Math.pow(1 + rate, nper.toDouble()) +
+                        pmt * ((Math.pow(1 + rate, nper.toDouble()) - 1) / rate)
+            // Contributions at the beginning of the period
             } else {
-                (1 - Math.pow(1 + rate, (-nper).toDouble())) / rate * (1 + rate)
+                pv * Math.pow(1 + rate, nper.toDouble()) +
+                        pmt * ((Math.pow(1 + rate, nper.toDouble()) - 1) / rate) * (1 + rate)
             }
-            return -pmt * pvFactor + fv / Math.pow(1 + rate, nper.toDouble())
         }
 
+        fun calculatePV(rate: Double, nper: Int, pmt: Double, fv: Double, type: Int = 0): Double {
+            val fvFactor = Math.pow(1 + rate, nper.toDouble())
+            // Contributions at the end of the period
+            return if (type == 0) {
+                (fv - pmt * ((fvFactor - 1) / rate)) / fvFactor
+            // Contributions at the beginning of the period
+            } else {
+                (fv - pmt * ((fvFactor - 1) / rate) * (1 + rate)) / fvFactor
+            }
+        }
     }
 }
