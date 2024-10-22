@@ -34,7 +34,6 @@ fun CalculatorCard(functionName: String, imageResId: Int, navController: NavCont
             modifier = Modifier.padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // Add image
             Image(
                 painter = painterResource(id = imageResId),
                 contentDescription = functionName,
@@ -42,7 +41,6 @@ fun CalculatorCard(functionName: String, imageResId: Int, navController: NavCont
                     .size(60.dp) // Set the desired size for the image
                     .padding(end = 16.dp) // Add space between the image and text
             )
-            // Add text
             Text(
                 text = functionName,
                 fontSize = 18.sp,

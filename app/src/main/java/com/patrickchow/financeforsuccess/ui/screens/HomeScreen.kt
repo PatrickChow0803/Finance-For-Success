@@ -10,7 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.patrickchow.financeforsuccess.dataClass.calculatorItems
+import com.patrickchow.financeforsuccess.dataclass.calculatorItems
 import com.patrickchow.financeforsuccess.ui.common.CalculatorCard
 
 @Composable

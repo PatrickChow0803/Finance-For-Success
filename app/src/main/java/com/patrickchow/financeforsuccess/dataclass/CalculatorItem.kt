@@ -1,4 +1,4 @@
-package com.patrickchow.financeforsuccess.dataClass
+package com.patrickchow.financeforsuccess.dataclass
 
 import com.patrickchow.financeforsuccess.R
 import com.patrickchow.financeforsuccess.navigation.ScreenType
