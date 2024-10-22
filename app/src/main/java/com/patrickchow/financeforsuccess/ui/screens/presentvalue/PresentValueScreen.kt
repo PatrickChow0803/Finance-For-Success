@@ -18,6 +18,7 @@ import com.patrickchow.financeforsuccess.ui.common.AppScaffold
 import com.patrickchow.financeforsuccess.ui.common.CalculateButton
 import com.patrickchow.financeforsuccess.ui.common.CalculatedText
 import com.patrickchow.financeforsuccess.ui.common.NumberTextField
+import com.patrickchow.financeforsuccess.ui.common.PaymentTypeRadioButtonGroup
 import com.patrickchow.financeforsuccess.ui.common.UIUtility
 
 @Composable
@@ -68,22 +69,10 @@ fun PresentValueScreen(calculatorItem: CalculatorItem, navController: NavControl
 
         UIUtility.SmallSpacer()
 
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            Text(stringResource(R.string.payment_type_label))
-            RadioButton(
-                selected = viewModel.paymentType.value == 0,
-                onClick = { viewModel.onPaymentTypeChange(0) }
-            )
-            Text(stringResource(R.string.payment_type_end))
-            RadioButton(
-                selected = viewModel.paymentType.value == 1,
-                onClick = { viewModel.onPaymentTypeChange(1) }
-            )
-            Text(stringResource(R.string.payment_type_beginning))
-        }
+        PaymentTypeRadioButtonGroup(
+            selectedOption = viewModel.paymentType.value,
+            onOptionSelected = { viewModel.onPaymentTypeChange(it) }
+        )
 
         UIUtility.MediumSpacer()
 
