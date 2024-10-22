@@ -48,6 +48,11 @@ val listOfModalSheetInformation = listOf(
         description = "This represents the amount of money you will have at the end of a specified period.",
         modalSheetType = ModalSheetType.FV
     ),
+    ModalSheetInformation(
+        title = "Present Value",
+        description = "The present value, or the lump-sum amount that a series of future payments is worth right now.",
+        modalSheetType = ModalSheetType.PV
+    ),
 )
 
 fun getModalSheetTypeIndex(modalSheetType: ModalSheetType): Int {

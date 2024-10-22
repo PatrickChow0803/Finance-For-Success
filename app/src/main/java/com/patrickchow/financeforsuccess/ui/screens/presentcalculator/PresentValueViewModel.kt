@@ -1,4 +1,4 @@
-package com.patrickchow.financeforsuccess.ui.screens.presentvalue
+package com.patrickchow.financeforsuccess.ui.screens.presentcalculator
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel

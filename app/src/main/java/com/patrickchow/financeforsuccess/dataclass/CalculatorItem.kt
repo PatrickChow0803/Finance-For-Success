@@ -22,6 +22,11 @@ val calculatorItems = listOf(
         screen = ScreenType.TipCalculator
     ),
     CalculatorItem(
+        title = "Future Value Calculator",
+        icon = R.drawable.future_value,
+        screen = ScreenType.FutureCalculator
+    ),
+    CalculatorItem(
         title = "Present Value Calculator",
         icon = R.drawable.present_value,
         screen = ScreenType.PresentCalculator

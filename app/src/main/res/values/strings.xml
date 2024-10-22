@@ -47,6 +47,11 @@
 
     <string name="future_value_label">Future Value (Optional)</string>
     <string name="future_value_tooltip">The value you want to calculate the present value for.</string>
+    <string name="calculate_future_value">Future Value</string>
+    <string name="calculated_future_value">Calculated Future Value</string>
+
+    <string name="present_value_label">Present Value (Optional)</string>
+    <string name="present_value_tooltip">The value you want to calculate the future value for.</string>
 
     <string name="payment_type_label">Payment Type:</string>
     <string name="calculate_present_value">Present Value</string>

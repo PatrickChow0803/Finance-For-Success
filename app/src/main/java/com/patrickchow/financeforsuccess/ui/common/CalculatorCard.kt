@@ -23,8 +23,8 @@ import com.patrickchow.financeforsuccess.navigation.ScreenType
 @Composable
 fun CalculatorCard(functionName: String, imageResId: Int, navController: NavController, screenType: ScreenType) {
     Card(
-        shape = RoundedCornerShape(8.dp),
-        elevation = CardDefaults.cardElevation(4.dp),
+        shape = RoundedCornerShape(16.dp),
+        elevation = CardDefaults.cardElevation(8.dp),
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 8.dp)
