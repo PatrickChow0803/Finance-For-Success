@@ -9,8 +9,6 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.patrickchow.financeforsuccess.dataclass.CalculatorItem
-import com.patrickchow.financeforsuccess.ui.common.CustomAppBar
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.ui.res.stringResource
 import com.patrickchow.financeforsuccess.R

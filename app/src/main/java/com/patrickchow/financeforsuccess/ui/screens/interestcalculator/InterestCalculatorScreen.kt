@@ -1,19 +1,14 @@
 package com.patrickchow.financeforsuccess.ui.screens.interestcalculator
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.patrickchow.financeforsuccess.dataclass.CalculatorItem
-import com.patrickchow.financeforsuccess.ui.common.CustomAppBar
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.patrickchow.financeforsuccess.R
 import com.patrickchow.financeforsuccess.dataclass.ModalSheetType
