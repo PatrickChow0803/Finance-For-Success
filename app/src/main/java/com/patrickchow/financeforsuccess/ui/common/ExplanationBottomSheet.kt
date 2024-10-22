@@ -5,7 +5,9 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.patrickchow.financeforsuccess.dataclass.ModalSheetInformation
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -21,28 +23,33 @@ fun ExplanationBottomSheet(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
+                .padding(10.dp),
             horizontalAlignment = Alignment.Start
         ) {
-            // Display title
             Text(
                 text = modalSheetInfo.title,
-                style = MaterialTheme.typography.titleLarge
+                style = MaterialTheme.typography.titleLarge,
+                fontSize = 34.sp,
+                fontWeight = FontWeight.Bold
             )
 
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(24.dp))
 
-            // Display description
             Text(
                 text = modalSheetInfo.description,
-                style = MaterialTheme.typography.bodyMedium
+                style = MaterialTheme.typography.bodyMedium,
+                fontSize = 20.sp,
             )
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            Button(onClick = { onDismiss() }) {
+            Button(
+                onClick = { onDismiss() },
+                modifier = Modifier.fillMaxWidth() // Stretch the button
+            ) {
                 Text("Close")
             }
+            Spacer(modifier = Modifier.height(16.dp))
         }
     }
 }

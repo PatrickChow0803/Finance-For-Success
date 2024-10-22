@@ -18,7 +18,7 @@ fun CustomTextField(
     label: String,
     keyboardType: KeyboardType,
     tooltipMessage: String? = null,
-    modalSheetInfo: ModalSheetInformation? = null, // Pass ModalSheetInformation instead of just content
+    modalSheetInfo: ModalSheetInformation? = null,
     modifier: Modifier = Modifier
 ) {
     var showBottomSheet by remember { mutableStateOf(false) }
@@ -46,7 +46,7 @@ fun CustomTextField(
 
         if (showBottomSheet && modalSheetInfo != null) {
             ExplanationBottomSheet(
-                modalSheetInfo = modalSheetInfo, // Pass the title and description
+                modalSheetInfo = modalSheetInfo,
                 onDismiss = { showBottomSheet = false }
             )
         }

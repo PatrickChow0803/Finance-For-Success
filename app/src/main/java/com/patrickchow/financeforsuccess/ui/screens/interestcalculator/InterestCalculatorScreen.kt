@@ -14,6 +14,11 @@ import com.patrickchow.financeforsuccess.ui.common.CustomAppBar
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.rememberScrollState
 import com.patrickchow.financeforsuccess.dataclass.ModalSheetInformation
+import com.patrickchow.financeforsuccess.dataclass.ModalSheetType
+import com.patrickchow.financeforsuccess.dataclass.getModalSheetTypeIndex
+import com.patrickchow.financeforsuccess.dataclass.getScreenTypeIndex
+import com.patrickchow.financeforsuccess.dataclass.listOfModalSheetInformation
+import com.patrickchow.financeforsuccess.navigation.ScreenType
 import com.patrickchow.financeforsuccess.ui.common.CalculateButton
 import com.patrickchow.financeforsuccess.ui.common.CalculatedText
 import com.patrickchow.financeforsuccess.ui.common.CustomTextField
@@ -47,7 +52,7 @@ fun InterestCalculatorScreen(calculatorItem: CalculatorItem, navController: NavC
                 label = "Principal Amount",
                 keyboardType = KeyboardType.Number,
                 tooltipMessage = "The initial amount of money on which interest is calculated.",
-                modalSheetInfo = ModalSheetInformation(title = "principle", description = "does this"),
+                modalSheetInfo = listOfModalSheetInformation[getModalSheetTypeIndex(ModalSheetType.Principal)],
             )
 
             Spacer(modifier = Modifier.height(8.dp))
@@ -57,7 +62,8 @@ fun InterestCalculatorScreen(calculatorItem: CalculatorItem, navController: NavC
                 onValueChange = { viewModel.rate = it },
                 label = "Interest Rate (%)",
                 keyboardType = KeyboardType.Number,
-                tooltipMessage = "The percentage of interest to be applied."
+                tooltipMessage = "The percentage of interest to be applied.",
+                modalSheetInfo = listOfModalSheetInformation[getModalSheetTypeIndex(ModalSheetType.Interest)],
             )
 
             Spacer(modifier = Modifier.height(8.dp))
@@ -67,7 +73,8 @@ fun InterestCalculatorScreen(calculatorItem: CalculatorItem, navController: NavC
                 onValueChange = { viewModel.time = it },
                 label = "Time (years)",
                 keyboardType = KeyboardType.Number,
-                tooltipMessage = "The time period in years."
+                tooltipMessage = "The time period in years.",
+                modalSheetInfo = listOfModalSheetInformation[getModalSheetTypeIndex(ModalSheetType.Time)],
             )
 
             Spacer(modifier = Modifier.height(16.dp))
