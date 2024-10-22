@@ -9,6 +9,7 @@ data class CalculatorItem(
     val screen: ScreenType
 )
 
+// TODO: Convert this to use String resources instead
 val calculatorItems = listOf(
     CalculatorItem(
         title = "Interest Calculator",

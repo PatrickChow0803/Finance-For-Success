@@ -8,7 +8,9 @@ import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
+import com.patrickchow.financeforsuccess.R
 import com.patrickchow.financeforsuccess.dataclass.ModalSheetInformation
 import com.patrickchow.financeforsuccess.util.CustomRegex
 
@@ -47,10 +49,10 @@ fun NumberTextField(
                 if (tooltipMessage != null) {
                     Icon(
                         imageVector = Icons.Filled.Info,
-                        contentDescription = "Info",
+                        contentDescription = stringResource(R.string.tooltip_content_description),
                         tint = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.clickable {
-                            showBottomSheet = true // Show the bottom sheet when the icon is clicked
+                            showBottomSheet = true
                         }
                     )
                 }

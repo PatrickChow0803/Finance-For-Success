@@ -5,10 +5,12 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.patrickchow.financeforsuccess.R
 import com.patrickchow.financeforsuccess.dataclass.CalculatorItem
 import com.patrickchow.financeforsuccess.dataclass.ModalSheetType
 import com.patrickchow.financeforsuccess.dataclass.getModalSheetTypeIndex
@@ -42,8 +44,8 @@ fun TipsCalculatorScreen(calculatorItem: CalculatorItem, navController: NavContr
             NumberTextField(
                 value = viewModel.billAmount.value,
                 onValueChange = { viewModel.onBillAmountChange(it) },
-                label = "Bill Amount",
-                tooltipMessage = "Enter the total bill amount.",
+                label = stringResource(R.string.bill_amount_label),
+                tooltipMessage = stringResource(R.string.bill_amount_tooltip),
                 modalSheetInfo = listOfModalSheetInformation[getModalSheetTypeIndex(ModalSheetType.Bill)],
             )
 
@@ -52,8 +54,8 @@ fun TipsCalculatorScreen(calculatorItem: CalculatorItem, navController: NavContr
             NumberTextField(
                 value = viewModel.tipPercentage.value,
                 onValueChange = { viewModel.onTipPercentageChange(it) },
-                label = "Tip Percentage (%)",
-                tooltipMessage = "Enter the desired tip percentage.",
+                label = stringResource(R.string.tip_percentage_label),
+                tooltipMessage = stringResource(R.string.tip_percentage_tooltip),
                 modalSheetInfo = listOfModalSheetInformation[getModalSheetTypeIndex(ModalSheetType.TipPercent)],
             )
 
@@ -63,8 +65,9 @@ fun TipsCalculatorScreen(calculatorItem: CalculatorItem, navController: NavContr
 
             UIUtility.MediumSpacer()
 
-            CalculatedText(text = "Calculated Tip:", result = viewModel.calculatedTip.value)
-            CalculatedText(text = "Total Amount:", result = viewModel.totalAmount.value)
+            CalculatedText(text = stringResource(R.string.calculated_tip_label), result = viewModel.calculatedTip.value)
+            UIUtility.SmallSpacer()
+            CalculatedText(text = stringResource(R.string.total_amount_label), result = viewModel.totalAmount.value)
         }
     }
 }

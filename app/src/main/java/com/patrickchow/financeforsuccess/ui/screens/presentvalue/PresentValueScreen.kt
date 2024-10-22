@@ -12,6 +12,8 @@ import com.patrickchow.financeforsuccess.dataclass.CalculatorItem
 import com.patrickchow.financeforsuccess.ui.common.CustomAppBar
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.ui.res.stringResource
+import com.patrickchow.financeforsuccess.R
 import com.patrickchow.financeforsuccess.dataclass.ModalSheetType
 import com.patrickchow.financeforsuccess.dataclass.getModalSheetTypeIndex
 import com.patrickchow.financeforsuccess.dataclass.listOfModalSheetInformation
@@ -46,8 +48,8 @@ fun PresentValueScreen(calculatorItem: CalculatorItem, navController: NavControl
             NumberTextField(
                 value = viewModel.rate.value,
                 onValueChange = { viewModel.onRateChange(it) },
-                label = "Interest Rate (%)",
-                tooltipMessage = "The percentage of interest applied annually.",
+                label = stringResource(R.string.interest_rate_label),
+                tooltipMessage = stringResource(R.string.interest_rate_tooltip),
                 modalSheetInfo = listOfModalSheetInformation[getModalSheetTypeIndex(ModalSheetType.Interest)],
             )
 
@@ -56,8 +58,8 @@ fun PresentValueScreen(calculatorItem: CalculatorItem, navController: NavControl
             NumberTextField(
                 value = viewModel.nper.value,
                 onValueChange = { viewModel.onTimeChange(it) },
-                label = "Number of Payments (Nper)",
-                tooltipMessage = "The total number of payments.",
+                label = stringResource(R.string.nper_label),
+                tooltipMessage = stringResource(R.string.nper_tooltip),
                 modalSheetInfo = listOfModalSheetInformation[getModalSheetTypeIndex(ModalSheetType.Nper)],
             )
 
@@ -66,8 +68,8 @@ fun PresentValueScreen(calculatorItem: CalculatorItem, navController: NavControl
             NumberTextField(
                 value = viewModel.payment.value,
                 onValueChange = { viewModel.onPaymentChange(it) },
-                label = "Payment Amount",
-                tooltipMessage = "The amount of each payment.",
+                label = stringResource(R.string.payment_amount_label),
+                tooltipMessage = stringResource(R.string.payment_amount_tooltip),
                 modalSheetInfo = listOfModalSheetInformation[getModalSheetTypeIndex(ModalSheetType.Pmt)],
             )
 
@@ -76,8 +78,8 @@ fun PresentValueScreen(calculatorItem: CalculatorItem, navController: NavControl
             NumberTextField(
                 value = viewModel.futureValue.value,
                 onValueChange = { viewModel.onFutureValueChange(it) },
-                label = "Future Value (Optional)",
-                tooltipMessage = "The value you want to calculate the present value for.",
+                label = stringResource(R.string.future_value_label),
+                tooltipMessage = stringResource(R.string.future_value_tooltip),
                 modalSheetInfo = listOfModalSheetInformation[getModalSheetTypeIndex(ModalSheetType.FV)],
             )
 
@@ -87,26 +89,27 @@ fun PresentValueScreen(calculatorItem: CalculatorItem, navController: NavControl
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Text("Payment Type:")
+                Text(stringResource(R.string.payment_type_label))
                 RadioButton(
                     selected = viewModel.paymentType.value == 0,
                     onClick = { viewModel.onPaymentTypeChange(0) }
                 )
-                Text("End")
+                Text(stringResource(R.string.payment_type_end))
                 RadioButton(
                     selected = viewModel.paymentType.value == 1,
                     onClick = { viewModel.onPaymentTypeChange(1) }
                 )
-                Text("Beginning")
+                Text(stringResource(R.string.payment_type_beginning))
             }
 
             UIUtility.MediumSpacer()
 
-            CalculateButton(onClick = { viewModel.calculatePresentValue() }, displayText = "Calculate Present Value")
+            CalculateButton(onClick = { viewModel.calculatePresentValue() }, displayText = stringResource(
+                R.string.calculate_present_value))
 
             UIUtility.MediumSpacer()
 
-            CalculatedText(text = "Calculated Present Value:", result = viewModel.result.value)
+            CalculatedText(text = stringResource(R.string.calculated_present_value_label), result = viewModel.result.value)
         }
     }
 }

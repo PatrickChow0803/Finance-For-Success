@@ -6,6 +6,7 @@ data class ModalSheetInformation(
     val modalSheetType: ModalSheetType,
 )
 
+// TODO: Convert this to use String resources instead
 val listOfModalSheetInformation = listOf(
     ModalSheetInformation(
         title = "Principal",
