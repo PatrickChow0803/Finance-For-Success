@@ -64,8 +64,6 @@ fun InterestCalculatorScreen(calculatorItem: CalculatorItem, navController: NavC
             )
 
             UIUtility.MediumSpacer()
-
-            CalculateButton(onClick = { viewModel.calculateCompoundInterest(numberOfCompoundPerYear = 1) }, displayText = stringResource(id = R.string.calculate_compound_interest))
             CalculateButton(onClick = { viewModel.calculateInterest() }, displayText = stringResource(id = R.string.calculate_simple_interest))
 
             Spacer(modifier = Modifier.height(16.dp))

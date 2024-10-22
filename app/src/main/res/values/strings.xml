@@ -21,6 +21,9 @@
     <string name="calculated_interest_label">Calculated Interest:</string>
     <string name="calculated_total_label">Calculated Total:</string>
 
+    <string name="compounding_periods_label">Compounding Periods per Year</string>
+    <string name="compounding_periods_tooltip">Enter the number of times interest is compounded per year.</string>
+
     <!-- Tips Calculator Screen -->
 
     <string name="bill_amount_label">Bill Amount</string>
@@ -46,7 +49,7 @@
     <string name="future_value_tooltip">The value you want to calculate the present value for.</string>
 
     <string name="payment_type_label">Payment Type:</string>
-    <string name="calculate_present_value">Calculate Present Value</string>
+    <string name="calculate_present_value">Present Value</string>
 
     <string name="calculated_present_value_label">Calculated Present Value:</string>
 
