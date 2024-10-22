@@ -9,6 +9,6 @@ Please make sure to complete the following tasks before submitting your pull req
 - [ ] I have verified that the state is secure.
 - [ ] I have followed the project's coding style guidelines.
 - [ ] I have documented my code and updated relevant documentation files (if needed).
-- [ ] No obvious regessions were found.
+- [ ] No obvious regressions were found.
 
 All checkboxes must be marked before merging!!!
