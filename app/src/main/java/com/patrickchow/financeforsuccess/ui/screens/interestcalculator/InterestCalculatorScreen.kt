@@ -23,7 +23,6 @@ import com.patrickchow.financeforsuccess.ui.common.CalculateButton
 import com.patrickchow.financeforsuccess.ui.common.CalculatedText
 import com.patrickchow.financeforsuccess.ui.common.CustomTextField
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun InterestCalculatorScreen(calculatorItem: CalculatorItem, navController: NavController) {
     val viewModel: InterestCalculatorViewModel = viewModel()
@@ -48,7 +47,7 @@ fun InterestCalculatorScreen(calculatorItem: CalculatorItem, navController: NavC
         ) {
             CustomTextField(
                 value = viewModel.principal,
-                onValueChange = { viewModel.principal = it },
+                onValueChange = { viewModel.onPrincipalChange(it) },
                 label = "Principal Amount",
                 keyboardType = KeyboardType.Number,
                 tooltipMessage = "The initial amount of money on which interest is calculated.",
@@ -59,7 +58,7 @@ fun InterestCalculatorScreen(calculatorItem: CalculatorItem, navController: NavC
 
             CustomTextField(
                 value = viewModel.rate,
-                onValueChange = { viewModel.rate = it },
+                onValueChange = { viewModel.onRateChange(it) },
                 label = "Interest Rate (%)",
                 keyboardType = KeyboardType.Number,
                 tooltipMessage = "The percentage of interest to be applied.",
@@ -70,7 +69,7 @@ fun InterestCalculatorScreen(calculatorItem: CalculatorItem, navController: NavC
 
             CustomTextField(
                 value = viewModel.time,
-                onValueChange = { viewModel.time = it },
+                onValueChange = { viewModel.onTimeChange(it)},
                 label = "Time (years)",
                 keyboardType = KeyboardType.Number,
                 tooltipMessage = "The time period in years.",
