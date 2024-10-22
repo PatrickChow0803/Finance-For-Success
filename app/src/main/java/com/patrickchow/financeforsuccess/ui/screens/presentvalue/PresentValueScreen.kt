@@ -5,7 +5,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
@@ -43,22 +42,11 @@ fun PresentValueScreen(calculatorItem: CalculatorItem, navController: NavControl
             horizontalAlignment = Alignment.Start,
             verticalArrangement = Arrangement.Top
         ) {
-            NumberTextField(
-                value = viewModel.futureValue.value,
-                onValueChange = { viewModel.onFutureValueChange(it) },
-                label = "Future Value",
-                keyboardType = KeyboardType.Number,
-                tooltipMessage = "The value you want to calculate the present value for.",
-                modalSheetInfo = listOfModalSheetInformation[getModalSheetTypeIndex(ModalSheetType.Bill)],
-            )
-
-            UIUtility.SmallSpacer()
 
             NumberTextField(
                 value = viewModel.rate.value,
                 onValueChange = { viewModel.onRateChange(it) },
                 label = "Interest Rate (%)",
-                keyboardType = KeyboardType.Number,
                 tooltipMessage = "The percentage of interest applied annually.",
                 modalSheetInfo = listOfModalSheetInformation[getModalSheetTypeIndex(ModalSheetType.Interest)],
             )
@@ -66,13 +54,51 @@ fun PresentValueScreen(calculatorItem: CalculatorItem, navController: NavControl
             UIUtility.SmallSpacer()
 
             NumberTextField(
-                value = viewModel.time.value,
+                value = viewModel.nper.value,
                 onValueChange = { viewModel.onTimeChange(it) },
-                label = "Time (years)",
-                keyboardType = KeyboardType.Number,
-                tooltipMessage = "The time period in years.",
-                modalSheetInfo = listOfModalSheetInformation[getModalSheetTypeIndex(ModalSheetType.Time)],
+                label = "Number of Payments (Nper)",
+                tooltipMessage = "The total number of payments.",
+                modalSheetInfo = listOfModalSheetInformation[getModalSheetTypeIndex(ModalSheetType.Nper)],
             )
+
+            UIUtility.SmallSpacer()
+
+            NumberTextField(
+                value = viewModel.payment.value,
+                onValueChange = { viewModel.onPaymentChange(it) },
+                label = "Payment Amount",
+                tooltipMessage = "The amount of each payment.",
+                modalSheetInfo = listOfModalSheetInformation[getModalSheetTypeIndex(ModalSheetType.Pmt)],
+            )
+
+            UIUtility.SmallSpacer()
+
+            NumberTextField(
+                value = viewModel.futureValue.value,
+                onValueChange = { viewModel.onFutureValueChange(it) },
+                label = "Future Value (Optional)",
+                tooltipMessage = "The value you want to calculate the present value for.",
+                modalSheetInfo = listOfModalSheetInformation[getModalSheetTypeIndex(ModalSheetType.FV)],
+            )
+
+            UIUtility.SmallSpacer()
+
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                Text("Payment Type:")
+                RadioButton(
+                    selected = viewModel.paymentType.value == 0,
+                    onClick = { viewModel.onPaymentTypeChange(0) }
+                )
+                Text("End")
+                RadioButton(
+                    selected = viewModel.paymentType.value == 1,
+                    onClick = { viewModel.onPaymentTypeChange(1) }
+                )
+                Text("Beginning")
+            }
 
             UIUtility.MediumSpacer()
 

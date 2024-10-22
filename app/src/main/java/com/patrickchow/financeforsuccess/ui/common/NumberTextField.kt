@@ -23,7 +23,6 @@ fun NumberTextField(
     value: String,
     onValueChange: (String) -> Unit,
     label: String,
-    keyboardType: KeyboardType,
     tooltipMessage: String? = null,
     modalSheetInfo: ModalSheetInformation? = null,
     modifier: Modifier = Modifier
@@ -42,7 +41,7 @@ fun NumberTextField(
                 }
             },
             label = { Text(label) },
-            keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             modifier = modifier.fillMaxWidth(),
             trailingIcon = {
                 if (tooltipMessage != null) {

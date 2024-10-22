@@ -32,6 +32,21 @@ val listOfModalSheetInformation = listOf(
         description = "This is the percentage amount that you plan on tipping. The average amount is 15%.",
         modalSheetType = ModalSheetType.TipPercent
     ),
+    ModalSheetInformation(
+        title = "Number of Payments",
+        description = "This refers to the total number of payment periods or installments in your financial calculation. For example, if you plan to make monthly payments for 2 years, the number of payments would be 24 (12 payments per year × 2 years).",
+        modalSheetType = ModalSheetType.Nper
+    ),
+    ModalSheetInformation(
+        title = "Payment Amount",
+        description = "This is the fixed amount of money that you will pay or receive in each period of your financial calculation. It can refer to loan payments, annuity payments, or any regular contributions you make over time. For example, if you are paying off a loan, this would be the monthly payment amount you need to make to fully pay off the loan by the end of the term.",
+        modalSheetType = ModalSheetType.Pmt
+    ),
+    ModalSheetInformation(
+        title = "Future Value",
+        description = "This represents the amount of money you will have at the end of a specified period.",
+        modalSheetType = ModalSheetType.FV
+    ),
 )
 
 fun getModalSheetTypeIndex(modalSheetType: ModalSheetType): Int {

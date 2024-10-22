@@ -47,7 +47,6 @@ fun InterestCalculatorScreen(calculatorItem: CalculatorItem, navController: NavC
                 value = viewModel.principal.value,
                 onValueChange = { viewModel.onPrincipalChange(it) },
                 label = "Principal Amount",
-                keyboardType = KeyboardType.Number,
                 tooltipMessage = "The initial amount of money on which interest is calculated.",
                 modalSheetInfo = listOfModalSheetInformation[getModalSheetTypeIndex(ModalSheetType.Principal)],
             )
@@ -58,7 +57,6 @@ fun InterestCalculatorScreen(calculatorItem: CalculatorItem, navController: NavC
                 value = viewModel.rate.value,
                 onValueChange = { viewModel.onRateChange(it) },
                 label = "Interest Rate (%)",
-                keyboardType = KeyboardType.Number,
                 tooltipMessage = "The percentage of interest to be applied.",
                 modalSheetInfo = listOfModalSheetInformation[getModalSheetTypeIndex(ModalSheetType.Interest)],
             )
@@ -69,7 +67,6 @@ fun InterestCalculatorScreen(calculatorItem: CalculatorItem, navController: NavC
                 value = viewModel.time.value,
                 onValueChange = { viewModel.onTimeChange(it) },
                 label = "Time (years)",
-                keyboardType = KeyboardType.Number,
                 tooltipMessage = "The time period in years.",
                 modalSheetInfo = listOfModalSheetInformation[getModalSheetTypeIndex(ModalSheetType.Time)],
             )

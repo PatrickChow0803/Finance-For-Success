@@ -43,7 +43,6 @@ fun TipsCalculatorScreen(calculatorItem: CalculatorItem, navController: NavContr
                 value = viewModel.billAmount.value,
                 onValueChange = { viewModel.onBillAmountChange(it) },
                 label = "Bill Amount",
-                keyboardType = KeyboardType.Number,
                 tooltipMessage = "Enter the total bill amount.",
                 modalSheetInfo = listOfModalSheetInformation[getModalSheetTypeIndex(ModalSheetType.Bill)],
             )
@@ -54,7 +53,6 @@ fun TipsCalculatorScreen(calculatorItem: CalculatorItem, navController: NavContr
                 value = viewModel.tipPercentage.value,
                 onValueChange = { viewModel.onTipPercentageChange(it) },
                 label = "Tip Percentage (%)",
-                keyboardType = KeyboardType.Number,
                 tooltipMessage = "Enter the desired tip percentage.",
                 modalSheetInfo = listOfModalSheetInformation[getModalSheetTypeIndex(ModalSheetType.TipPercent)],
             )
