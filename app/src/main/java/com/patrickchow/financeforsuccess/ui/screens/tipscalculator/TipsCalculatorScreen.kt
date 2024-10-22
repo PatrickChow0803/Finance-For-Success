@@ -16,7 +16,8 @@ import com.patrickchow.financeforsuccess.dataclass.listOfModalSheetInformation
 import com.patrickchow.financeforsuccess.ui.common.CustomAppBar
 import com.patrickchow.financeforsuccess.ui.common.CalculateButton
 import com.patrickchow.financeforsuccess.ui.common.CalculatedText
-import com.patrickchow.financeforsuccess.ui.common.CustomTextField
+import com.patrickchow.financeforsuccess.ui.common.NumberTextField
+import com.patrickchow.financeforsuccess.ui.common.UIUtility
 
 @Composable
 fun TipsCalculatorScreen(calculatorItem: CalculatorItem, navController: NavController) {
@@ -38,7 +39,7 @@ fun TipsCalculatorScreen(calculatorItem: CalculatorItem, navController: NavContr
             horizontalAlignment = Alignment.Start,
             verticalArrangement = Arrangement.Top
         ) {
-            CustomTextField(
+            NumberTextField(
                 value = viewModel.billAmount.value,
                 onValueChange = { viewModel.onBillAmountChange(it) },
                 label = "Bill Amount",
@@ -47,9 +48,9 @@ fun TipsCalculatorScreen(calculatorItem: CalculatorItem, navController: NavContr
                 modalSheetInfo = listOfModalSheetInformation[getModalSheetTypeIndex(ModalSheetType.Bill)],
             )
 
-            Spacer(modifier = Modifier.height(8.dp))
+            UIUtility.SmallSpacer()
 
-            CustomTextField(
+            NumberTextField(
                 value = viewModel.tipPercentage.value,
                 onValueChange = { viewModel.onTipPercentageChange(it) },
                 label = "Tip Percentage (%)",
@@ -58,11 +59,11 @@ fun TipsCalculatorScreen(calculatorItem: CalculatorItem, navController: NavContr
                 modalSheetInfo = listOfModalSheetInformation[getModalSheetTypeIndex(ModalSheetType.TipPercent)],
             )
 
-            Spacer(modifier = Modifier.height(16.dp))
+            UIUtility.MediumSpacer()
 
             CalculateButton(onClick = { viewModel.calculateTip() })
 
-            Spacer(modifier = Modifier.height(16.dp))
+            UIUtility.MediumSpacer()
 
             CalculatedText(text = "Calculated Tip:", result = viewModel.calculatedTip.value)
             CalculatedText(text = "Total Amount:", result = viewModel.totalAmount.value)

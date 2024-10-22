@@ -18,7 +18,8 @@ import com.patrickchow.financeforsuccess.dataclass.getModalSheetTypeIndex
 import com.patrickchow.financeforsuccess.dataclass.listOfModalSheetInformation
 import com.patrickchow.financeforsuccess.ui.common.CalculateButton
 import com.patrickchow.financeforsuccess.ui.common.CalculatedText
-import com.patrickchow.financeforsuccess.ui.common.CustomTextField
+import com.patrickchow.financeforsuccess.ui.common.NumberTextField
+import com.patrickchow.financeforsuccess.ui.common.UIUtility
 
 @Composable
 fun PresentValueScreen(calculatorItem: CalculatorItem, navController: NavController) {
@@ -42,7 +43,7 @@ fun PresentValueScreen(calculatorItem: CalculatorItem, navController: NavControl
             horizontalAlignment = Alignment.Start,
             verticalArrangement = Arrangement.Top
         ) {
-            CustomTextField(
+            NumberTextField(
                 value = viewModel.futureValue.value,
                 onValueChange = { viewModel.onFutureValueChange(it) },
                 label = "Future Value",
@@ -51,9 +52,9 @@ fun PresentValueScreen(calculatorItem: CalculatorItem, navController: NavControl
                 modalSheetInfo = listOfModalSheetInformation[getModalSheetTypeIndex(ModalSheetType.Bill)],
             )
 
-            Spacer(modifier = Modifier.height(8.dp))
+            UIUtility.SmallSpacer()
 
-            CustomTextField(
+            NumberTextField(
                 value = viewModel.rate.value,
                 onValueChange = { viewModel.onRateChange(it) },
                 label = "Interest Rate (%)",
@@ -62,9 +63,9 @@ fun PresentValueScreen(calculatorItem: CalculatorItem, navController: NavControl
                 modalSheetInfo = listOfModalSheetInformation[getModalSheetTypeIndex(ModalSheetType.Interest)],
             )
 
-            Spacer(modifier = Modifier.height(8.dp))
+            UIUtility.SmallSpacer()
 
-            CustomTextField(
+            NumberTextField(
                 value = viewModel.time.value,
                 onValueChange = { viewModel.onTimeChange(it) },
                 label = "Time (years)",
@@ -73,11 +74,11 @@ fun PresentValueScreen(calculatorItem: CalculatorItem, navController: NavControl
                 modalSheetInfo = listOfModalSheetInformation[getModalSheetTypeIndex(ModalSheetType.Time)],
             )
 
-            Spacer(modifier = Modifier.height(16.dp))
+            UIUtility.MediumSpacer()
 
             CalculateButton(onClick = { viewModel.calculatePresentValue() }, displayText = "Calculate Present Value")
 
-            Spacer(modifier = Modifier.height(16.dp))
+            UIUtility.MediumSpacer()
 
             CalculatedText(text = "Calculated Present Value:", result = viewModel.result.value)
         }

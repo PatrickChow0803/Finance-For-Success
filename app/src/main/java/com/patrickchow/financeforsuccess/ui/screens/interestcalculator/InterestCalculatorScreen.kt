@@ -18,7 +18,8 @@ import com.patrickchow.financeforsuccess.dataclass.getModalSheetTypeIndex
 import com.patrickchow.financeforsuccess.dataclass.listOfModalSheetInformation
 import com.patrickchow.financeforsuccess.ui.common.CalculateButton
 import com.patrickchow.financeforsuccess.ui.common.CalculatedText
-import com.patrickchow.financeforsuccess.ui.common.CustomTextField
+import com.patrickchow.financeforsuccess.ui.common.NumberTextField
+import com.patrickchow.financeforsuccess.ui.common.UIUtility
 
 @Composable
 fun InterestCalculatorScreen(calculatorItem: CalculatorItem, navController: NavController) {
@@ -42,7 +43,7 @@ fun InterestCalculatorScreen(calculatorItem: CalculatorItem, navController: NavC
             horizontalAlignment = Alignment.Start,
             verticalArrangement = Arrangement.Top
         ) {
-            CustomTextField(
+            NumberTextField(
                 value = viewModel.principal.value,
                 onValueChange = { viewModel.onPrincipalChange(it) },
                 label = "Principal Amount",
@@ -51,9 +52,9 @@ fun InterestCalculatorScreen(calculatorItem: CalculatorItem, navController: NavC
                 modalSheetInfo = listOfModalSheetInformation[getModalSheetTypeIndex(ModalSheetType.Principal)],
             )
 
-            Spacer(modifier = Modifier.height(8.dp))
+            UIUtility.SmallSpacer()
 
-            CustomTextField(
+            NumberTextField(
                 value = viewModel.rate.value,
                 onValueChange = { viewModel.onRateChange(it) },
                 label = "Interest Rate (%)",
@@ -62,9 +63,9 @@ fun InterestCalculatorScreen(calculatorItem: CalculatorItem, navController: NavC
                 modalSheetInfo = listOfModalSheetInformation[getModalSheetTypeIndex(ModalSheetType.Interest)],
             )
 
-            Spacer(modifier = Modifier.height(8.dp))
+            UIUtility.SmallSpacer()
 
-            CustomTextField(
+            NumberTextField(
                 value = viewModel.time.value,
                 onValueChange = { viewModel.onTimeChange(it) },
                 label = "Time (years)",
@@ -73,15 +74,16 @@ fun InterestCalculatorScreen(calculatorItem: CalculatorItem, navController: NavC
                 modalSheetInfo = listOfModalSheetInformation[getModalSheetTypeIndex(ModalSheetType.Time)],
             )
 
-            Spacer(modifier = Modifier.height(16.dp))
+            UIUtility.MediumSpacer()
 
             CalculateButton(onClick = { viewModel.calculateCompoundInterest(numberOfCompoundPerYear = 1) }, displayText = "Compound Interest")
             CalculateButton(onClick = { viewModel.calculateInterest() }, displayText = "Simple Interest")
 
             Spacer(modifier = Modifier.height(16.dp))
+            UIUtility.MediumSpacer()
 
             CalculatedText(text = "Calculated Interest:", result = viewModel.result.value)
-            Spacer(modifier = Modifier.height(6.dp))
+            UIUtility.SmallSpacer()
             CalculatedText(text = "Calculated Total:", result = viewModel.total.value)
         }
     }

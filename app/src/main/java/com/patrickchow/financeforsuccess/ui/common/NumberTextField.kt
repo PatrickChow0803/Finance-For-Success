@@ -12,8 +12,14 @@ import androidx.compose.ui.text.input.KeyboardType
 import com.patrickchow.financeforsuccess.dataclass.ModalSheetInformation
 import com.patrickchow.financeforsuccess.util.CustomRegex
 
+/**
+ *  The standard number input field for this app.
+ *  Makes is so that only numbers, a single decimal, and two decimal places are allowed.
+ *  Also includes a tooltip to help users understand a field that opens up a bottom sheet to explain
+ *  */
+
 @Composable
-fun CustomTextField(
+fun NumberTextField(
     value: String,
     onValueChange: (String) -> Unit,
     label: String,
