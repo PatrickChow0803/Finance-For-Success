@@ -17,6 +17,14 @@ class TipsCalculatorViewModel : ViewModel() {
     private var _totalAmount = mutableStateOf("")
     val totalAmount: State<String> get() = _totalAmount
 
+    fun onBillAmountChange(newBillAmount: String) {
+        _billAmount.value = newBillAmount
+    }
+
+    fun onTipPercentageChange(newTipPercentage: String) {
+        _tipPercentage.value = newTipPercentage
+    }
+
     fun calculateTip() {
         val bill = billAmount.value.toDoubleOrNull() ?: 0.0
         val tipPercent = tipPercentage.value.toDoubleOrNull() ?: 0.0

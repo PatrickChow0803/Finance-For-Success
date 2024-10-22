@@ -75,12 +75,13 @@ fun InterestCalculatorScreen(calculatorItem: CalculatorItem, navController: NavC
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            CalculateButton(onClick = { viewModel.calculateInterest() }, displayText = "Simple Interest")
             CalculateButton(onClick = { viewModel.calculateCompoundInterest(numberOfCompoundPerYear = 1) }, displayText = "Compound Interest")
+            CalculateButton(onClick = { viewModel.calculateInterest() }, displayText = "Simple Interest")
 
             Spacer(modifier = Modifier.height(16.dp))
 
             CalculatedText(text = "Calculated Interest:", result = viewModel.result.value)
+            Spacer(modifier = Modifier.height(6.dp))
             CalculatedText(text = "Calculated Total:", result = viewModel.total.value)
         }
     }
