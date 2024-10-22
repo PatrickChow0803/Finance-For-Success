@@ -8,14 +8,9 @@ jobs:
   checklist:
     runs-on: ubuntu-latest
     steps:
-      - name: Check PR checklist
-        uses: peter-evans/auto-approve-action@v2
-        id: pr-checklist
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Fail if checklist is incomplete
+      - name: Check if PR body contains completed checklist
         run: |
+          echo "PR Body: ${{ github.event.pull_request.body }}"
           if ! grep -q "\- \[x\]" "${{ github.event.pull_request.body }}"; then
             echo "Checklist is not complete. Please complete the checklist before merging."
             exit 1
