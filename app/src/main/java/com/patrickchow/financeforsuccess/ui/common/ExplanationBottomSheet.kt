@@ -6,17 +6,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.tooling.preview.Preview
+import com.patrickchow.financeforsuccess.dataclass.ModalSheetInformation
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ExplanationBottomSheet(
-    message: String,
+    modalSheetInfo: ModalSheetInformation,
     onDismiss: () -> Unit
 ) {
     ModalBottomSheet(
         onDismissRequest = onDismiss,
-        scrimColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f) // Adjust the alpha value for shadow effect
+        scrimColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f) // Shadow effect
     ) {
         Column(
             modifier = Modifier
@@ -24,8 +24,22 @@ fun ExplanationBottomSheet(
                 .padding(16.dp),
             horizontalAlignment = Alignment.Start
         ) {
-            Text(text = message)
+            // Display title
+            Text(
+                text = modalSheetInfo.title,
+                style = MaterialTheme.typography.titleLarge
+            )
+
             Spacer(modifier = Modifier.height(8.dp))
+
+            // Display description
+            Text(
+                text = modalSheetInfo.description,
+                style = MaterialTheme.typography.bodyMedium
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
             Button(onClick = { onDismiss() }) {
                 Text("Close")
             }

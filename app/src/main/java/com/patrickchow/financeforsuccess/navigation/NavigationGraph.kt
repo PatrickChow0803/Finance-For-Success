@@ -6,8 +6,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.patrickchow.financeforsuccess.ui.common.InterestCalculatorScreen
 import com.patrickchow.financeforsuccess.ui.screens.*
+import com.patrickchow.financeforsuccess.ui.screens.interestcalculator.InterestCalculatorScreen
 
 @Composable
 fun NavigationGraph(navController: NavHostController) {

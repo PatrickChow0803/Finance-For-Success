@@ -29,14 +29,13 @@ fun CustomTooltip(
             contentDescription = "Info",
             tint = MaterialTheme.colorScheme.primary
         )
-        // Show the tooltip message when the icon is clicked
         if (isVisible) {
             Surface(
                 shape = MaterialTheme.shapes.small,
                 color = MaterialTheme.colorScheme.surface,
                 modifier = Modifier
                     .padding(top = 4.dp)
-                    .widthIn(max = 200.dp) // Optional: Limit the width of the tooltip
+                    .widthIn(max = 200.dp)
             ) {
                 Text(
                     text = message,
