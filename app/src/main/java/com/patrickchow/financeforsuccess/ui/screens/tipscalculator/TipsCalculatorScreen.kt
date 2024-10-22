@@ -1,13 +1,11 @@
 package com.patrickchow.financeforsuccess.ui.screens.tipscalculator
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.patrickchow.financeforsuccess.R
@@ -15,29 +13,23 @@ import com.patrickchow.financeforsuccess.dataclass.CalculatorItem
 import com.patrickchow.financeforsuccess.dataclass.ModalSheetType
 import com.patrickchow.financeforsuccess.dataclass.getModalSheetTypeIndex
 import com.patrickchow.financeforsuccess.dataclass.listOfModalSheetInformation
-import com.patrickchow.financeforsuccess.ui.common.CustomAppBar
+import com.patrickchow.financeforsuccess.ui.common.AppScaffold
 import com.patrickchow.financeforsuccess.ui.common.CalculateButton
 import com.patrickchow.financeforsuccess.ui.common.CalculatedText
 import com.patrickchow.financeforsuccess.ui.common.NumberTextField
 import com.patrickchow.financeforsuccess.ui.common.UIUtility
+import com.patrickchow.financeforsuccess.ui.extensions.customScrollableColumn
 
 @Composable
 fun TipsCalculatorScreen(calculatorItem: CalculatorItem, navController: NavController) {
     val viewModel: TipsCalculatorViewModel = viewModel()
+    val scrollState = rememberScrollState()
 
-    Scaffold(
-        topBar = {
-            CustomAppBar(
-                title = calculatorItem.title,
-                onBackClick = { navController.popBackStack() }
-            )
-        }
-    ) { innerPadding ->
+    AppScaffold(
+        title = calculatorItem.title, navController = navController
+    )  { innerPadding ->
         Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-                .padding(16.dp),
+            modifier = Modifier.customScrollableColumn(scrollState, innerPadding),
             horizontalAlignment = Alignment.Start,
             verticalArrangement = Arrangement.Top
         ) {

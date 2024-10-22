@@ -17,30 +17,23 @@ import com.patrickchow.financeforsuccess.R
 import com.patrickchow.financeforsuccess.dataclass.ModalSheetType
 import com.patrickchow.financeforsuccess.dataclass.getModalSheetTypeIndex
 import com.patrickchow.financeforsuccess.dataclass.listOfModalSheetInformation
+import com.patrickchow.financeforsuccess.ui.common.AppScaffold
 import com.patrickchow.financeforsuccess.ui.common.CalculateButton
 import com.patrickchow.financeforsuccess.ui.common.CalculatedText
 import com.patrickchow.financeforsuccess.ui.common.NumberTextField
 import com.patrickchow.financeforsuccess.ui.common.UIUtility
+import com.patrickchow.financeforsuccess.ui.extensions.customScrollableColumn
 
 @Composable
 fun PresentValueScreen(calculatorItem: CalculatorItem, navController: NavController) {
     val viewModel: PresentValueViewModel = viewModel()
     val scrollState = rememberScrollState()
 
-    Scaffold(
-        topBar = {
-            CustomAppBar(
-                title = calculatorItem.title,
-                onBackClick = { navController.popBackStack() }
-            )
-        }
+    AppScaffold(
+        title = calculatorItem.title, navController = navController
     ) { innerPadding ->
         Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-                .padding(16.dp)
-                .verticalScroll(scrollState),
+            modifier = Modifier.customScrollableColumn(scrollState, innerPadding),
             horizontalAlignment = Alignment.Start,
             verticalArrangement = Arrangement.Top
         ) {
