@@ -2,8 +2,9 @@ package com.patrickchow.financeforsuccess.ui.screens.interestcalculator
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import java.text.DecimalFormat
 import androidx.compose.runtime.State
+import com.patrickchow.financeforsuccess.util.CustomRegex
+import com.patrickchow.financeforsuccess.util.MathFormulas
 
 class InterestCalculatorViewModel : ViewModel() {
 
@@ -22,8 +23,6 @@ class InterestCalculatorViewModel : ViewModel() {
     private var _total = mutableStateOf("")
     val total: State<String> get() = _total
 
-    private val decimalFormat = DecimalFormat("#.00")
-
     fun onPrincipalChange(newPrincipal: String) {
         _principal.value = newPrincipal
     }
@@ -41,11 +40,10 @@ class InterestCalculatorViewModel : ViewModel() {
         val r = _rate.value.toDoubleOrNull() ?: return
         val t = _time.value.toDoubleOrNull() ?: return
 
-        // Simple Interest Formula: SI = (P * R * T) / 100
-        val interest = (p * r * t) / 100
+        val interest = MathFormulas.calculateSimpleInterest(p, r, t)
         val totalAmount = p + interest
-        _result.value = decimalFormat.format(interest)
-        _total.value = decimalFormat.format(totalAmount)
+        _result.value = CustomRegex.decimalFormat.format(interest)
+        _total.value = CustomRegex.decimalFormat.format(totalAmount)
     }
 
     fun calculateCompoundInterest(numberOfCompoundPerYear: Int) {
@@ -53,11 +51,10 @@ class InterestCalculatorViewModel : ViewModel() {
         val r = _rate.value.toDoubleOrNull()?.div(100) ?: return // Convert percentage to decimal
         val t = _time.value.toDoubleOrNull() ?: return
 
-        // Compound Interest Formula: A = P (1 + r/n)^(nt)
-        val amount = p * Math.pow((1 + r / numberOfCompoundPerYear), (numberOfCompoundPerYear * t))
+        val amount = MathFormulas.calculateCompoundInterest(p, r, numberOfCompoundPerYear, t)
         val interest = amount - p
 
-        _result.value = decimalFormat.format(interest)
-        _total.value = decimalFormat.format(amount)
+        _result.value = CustomRegex.decimalFormat.format(interest)
+        _total.value = CustomRegex.decimalFormat.format(amount)
     }
 }

@@ -11,7 +11,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import com.patrickchow.financeforsuccess.dataclass.ModalSheetInformation
 import com.patrickchow.financeforsuccess.util.CustomRegex
-import java.util.regex.Pattern
 
 @Composable
 fun CustomTextField(

@@ -3,6 +3,8 @@ package com.patrickchow.financeforsuccess.ui.screens.tipsCalculator
 import androidx.lifecycle.ViewModel
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.State
+import com.patrickchow.financeforsuccess.util.CustomRegex.Companion.decimalFormat
+import com.patrickchow.financeforsuccess.util.MathFormulas
 
 class TipsCalculatorViewModel : ViewModel() {
     private var _billAmount = mutableStateOf("")
@@ -28,10 +30,10 @@ class TipsCalculatorViewModel : ViewModel() {
     fun calculateTip() {
         val bill = billAmount.value.toDoubleOrNull() ?: 0.0
         val tipPercent = tipPercentage.value.toDoubleOrNull() ?: 0.0
-        val tip = bill * (tipPercent / 100)
+        val tip = MathFormulas.calculateTip(bill, tipPercent)
         val total = bill + tip
 
-        _calculatedTip.value = String.format("%.2f", tip)
-        _totalAmount.value = String.format("%.2f", total)
+        _calculatedTip.value = decimalFormat.format(tip)
+        _totalAmount.value = decimalFormat.format(total)
     }
 }
