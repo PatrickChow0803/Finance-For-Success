@@ -10,6 +10,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import com.patrickchow.financeforsuccess.dataclass.ModalSheetInformation
+import com.patrickchow.financeforsuccess.util.CustomRegex
+import java.util.regex.Pattern
 
 @Composable
 fun CustomTextField(
@@ -23,10 +25,17 @@ fun CustomTextField(
 ) {
     var showBottomSheet by remember { mutableStateOf(false) }
 
+    val regex = CustomRegex().dollarRegex
+
     Column {
         TextField(
             value = value,
-            onValueChange = onValueChange,
+            onValueChange = { onValueChange ->
+                // Validate the new value against the regex
+                if (regex.matcher(onValueChange).matches()) {
+                    onValueChange(onValueChange) // Only update if the new value is valid
+                }
+            },
             label = { Text(label) },
             keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
             modifier = modifier.fillMaxWidth(),
