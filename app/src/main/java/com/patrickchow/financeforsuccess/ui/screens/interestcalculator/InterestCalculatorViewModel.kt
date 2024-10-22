@@ -52,7 +52,7 @@ class InterestCalculatorViewModel : ViewModel() {
         val t = _time.value.toDoubleOrNull() ?: return
 
         val amount = MathFormulas.calculateCompoundInterest(p, r, numberOfCompoundPerYear, t)
-        val interest = amount - p
+        val interest = amount - p //
 
         _result.value = CustomRegex.decimalFormat.format(interest)
         _total.value = CustomRegex.decimalFormat.format(amount)
