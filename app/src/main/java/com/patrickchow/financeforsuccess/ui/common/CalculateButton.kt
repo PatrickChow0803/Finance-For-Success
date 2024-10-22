@@ -5,8 +5,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 
 @Composable
-fun CalculateButton(onClick: () -> Unit) {
+fun CalculateButton(onClick: () -> Unit, displayText: String? = null) {
     Button(onClick = onClick) {
-        Text("Calculate")
+        Text("Calculate${displayText?.let { " $it" } ?: ""}")
     }
 }

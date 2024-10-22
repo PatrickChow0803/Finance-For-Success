@@ -13,12 +13,9 @@ import com.patrickchow.financeforsuccess.dataclass.CalculatorItem
 import com.patrickchow.financeforsuccess.ui.common.CustomAppBar
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.rememberScrollState
-import com.patrickchow.financeforsuccess.dataclass.ModalSheetInformation
 import com.patrickchow.financeforsuccess.dataclass.ModalSheetType
 import com.patrickchow.financeforsuccess.dataclass.getModalSheetTypeIndex
-import com.patrickchow.financeforsuccess.dataclass.getScreenTypeIndex
 import com.patrickchow.financeforsuccess.dataclass.listOfModalSheetInformation
-import com.patrickchow.financeforsuccess.navigation.ScreenType
 import com.patrickchow.financeforsuccess.ui.common.CalculateButton
 import com.patrickchow.financeforsuccess.ui.common.CalculatedText
 import com.patrickchow.financeforsuccess.ui.common.CustomTextField
@@ -42,11 +39,11 @@ fun InterestCalculatorScreen(calculatorItem: CalculatorItem, navController: NavC
                 .padding(innerPadding)
                 .padding(16.dp)
                 .verticalScroll(scrollState),
-            horizontalAlignment = Alignment.CenterHorizontally,
+            horizontalAlignment = Alignment.Start,
             verticalArrangement = Arrangement.Top
         ) {
             CustomTextField(
-                value = viewModel.principal,
+                value = viewModel.principal.value,
                 onValueChange = { viewModel.onPrincipalChange(it) },
                 label = "Principal Amount",
                 keyboardType = KeyboardType.Number,
@@ -57,7 +54,7 @@ fun InterestCalculatorScreen(calculatorItem: CalculatorItem, navController: NavC
             Spacer(modifier = Modifier.height(8.dp))
 
             CustomTextField(
-                value = viewModel.rate,
+                value = viewModel.rate.value,
                 onValueChange = { viewModel.onRateChange(it) },
                 label = "Interest Rate (%)",
                 keyboardType = KeyboardType.Number,
@@ -68,8 +65,8 @@ fun InterestCalculatorScreen(calculatorItem: CalculatorItem, navController: NavC
             Spacer(modifier = Modifier.height(8.dp))
 
             CustomTextField(
-                value = viewModel.time,
-                onValueChange = { viewModel.onTimeChange(it)},
+                value = viewModel.time.value,
+                onValueChange = { viewModel.onTimeChange(it) },
                 label = "Time (years)",
                 keyboardType = KeyboardType.Number,
                 tooltipMessage = "The time period in years.",
@@ -78,13 +75,13 @@ fun InterestCalculatorScreen(calculatorItem: CalculatorItem, navController: NavC
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            CalculateButton(onClick = { viewModel.calculateInterest() })
+            CalculateButton(onClick = { viewModel.calculateInterest() }, displayText = "Simple Interest")
+            CalculateButton(onClick = { viewModel.calculateCompoundInterest(numberOfCompoundPerYear = 1) }, displayText = "Compound Interest")
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            CalculatedText(text = "Calculated Interest:", result = viewModel.result)
-            CalculatedText(text = "Calculated Total:", result = viewModel.total)
+            CalculatedText(text = "Calculated Interest:", result = viewModel.result.value)
+            CalculatedText(text = "Calculated Total:", result = viewModel.total.value)
         }
     }
 }
-

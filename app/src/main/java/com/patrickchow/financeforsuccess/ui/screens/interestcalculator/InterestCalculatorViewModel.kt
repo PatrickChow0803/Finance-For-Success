@@ -4,50 +4,60 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import java.text.DecimalFormat
 import androidx.compose.runtime.State
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
 
 class InterestCalculatorViewModel : ViewModel() {
 
-    private var _principal by mutableStateOf("")
-    val principal: String get() = _principal
+    private var _principal = mutableStateOf("")
+    val principal: State<String> get() = _principal
 
-    private var _rate by mutableStateOf("")
-    val rate: String get() = _rate
+    private var _rate = mutableStateOf("")
+    val rate: State<String> get() = _rate
 
-    private var _time by mutableStateOf("")
-    val time: String get() = _time
+    private var _time = mutableStateOf("")
+    val time: State<String> get() = _time
 
-    private var _result by mutableStateOf("")
-    val result: String get() = _result
+    private var _result = mutableStateOf("")
+    val result: State<String> get() = _result
 
-    private var _total by mutableStateOf("")
-    val total: String get() = _total
+    private var _total = mutableStateOf("")
+    val total: State<String> get() = _total
 
     private val decimalFormat = DecimalFormat("#.00")
 
-    fun calculateInterest() {
-        // Use the values directly, since they are String types
-        val p = _principal.toDoubleOrNull() ?: return
-        val r = _rate.toDoubleOrNull() ?: return
-        val t = _time.toDoubleOrNull() ?: return
-
-        // Simple Interest Formula: SI = (P * R * T) / 100
-        val interest = (p * r * t) / 100
-        val totalAmount = p + interest // Renamed for clarity
-        _result = decimalFormat.format(interest)
-        _total = decimalFormat.format(totalAmount)
-    }
-
     fun onPrincipalChange(newPrincipal: String) {
-        _principal = newPrincipal
+        _principal.value = newPrincipal
     }
 
     fun onRateChange(newRate: String) {
-        _rate = newRate
+        _rate.value = newRate
     }
 
     fun onTimeChange(newTime: String) {
-        _time = newTime
+        _time.value = newTime
+    }
+
+    fun calculateInterest() {
+        val p = _principal.value.toDoubleOrNull() ?: return
+        val r = _rate.value.toDoubleOrNull() ?: return
+        val t = _time.value.toDoubleOrNull() ?: return
+
+        // Simple Interest Formula: SI = (P * R * T) / 100
+        val interest = (p * r * t) / 100
+        val totalAmount = p + interest
+        _result.value = decimalFormat.format(interest)
+        _total.value = decimalFormat.format(totalAmount)
+    }
+
+    fun calculateCompoundInterest(numberOfCompoundPerYear: Int) {
+        val p = _principal.value.toDoubleOrNull() ?: return
+        val r = _rate.value.toDoubleOrNull()?.div(100) ?: return // Convert percentage to decimal
+        val t = _time.value.toDoubleOrNull() ?: return
+
+        // Compound Interest Formula: A = P (1 + r/n)^(nt)
+        val amount = p * Math.pow((1 + r / numberOfCompoundPerYear), (numberOfCompoundPerYear * t))
+        val interest = amount - p
+
+        _result.value = decimalFormat.format(interest)
+        _total.value = decimalFormat.format(amount)
     }
 }

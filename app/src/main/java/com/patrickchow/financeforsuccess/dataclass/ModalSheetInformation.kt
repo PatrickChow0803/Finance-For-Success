@@ -19,7 +19,7 @@ val listOfModalSheetInformation = listOf(
     ),
     ModalSheetInformation(
         title = "Time (years)",
-        description = "This is the total amount of years that the money will compound",
+        description = "This is the total amount of years that the money will grow",
         modalSheetType = ModalSheetType.Time
     ),
 )
