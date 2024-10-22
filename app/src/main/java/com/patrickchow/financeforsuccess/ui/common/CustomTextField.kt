@@ -25,7 +25,7 @@ fun CustomTextField(
 ) {
     var showBottomSheet by remember { mutableStateOf(false) }
 
-    val regex = CustomRegex().dollarRegex
+    val regex = CustomRegex.dollarRegex
 
     Column {
         TextField(
