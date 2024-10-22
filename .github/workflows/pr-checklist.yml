@@ -10,8 +10,10 @@ jobs:
     steps:
       - name: Check if PR body contains completed checklist
         run: |
-          echo "$PR_BODY" | grep -q -E '^\s*-\s+\[x\]' && echo "Checklist complete." || echo "Checklist not complete."
-          if ! grep -q "\- \[x\]" "${{ github.event.pull_request.body }}"; then
+          echo "${{ github.event.pull_request.body }}" | grep -q -E '^\s*-\s+\[x\]' 
+          if [ $? -ne 0 ]; then
             echo "Checklist is not complete. Please complete the checklist before merging."
             exit 1
+          else
+            echo "Checklist complete."
           fi
