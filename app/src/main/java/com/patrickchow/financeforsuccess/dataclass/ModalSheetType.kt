@@ -4,4 +4,6 @@ enum class ModalSheetType {
     Principal,
     Interest,
     Time,
+    Bill,
+    TipPercent,
 }

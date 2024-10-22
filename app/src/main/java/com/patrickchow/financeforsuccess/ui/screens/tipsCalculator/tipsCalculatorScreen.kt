@@ -10,6 +10,9 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.patrickchow.financeforsuccess.dataclass.CalculatorItem
+import com.patrickchow.financeforsuccess.dataclass.ModalSheetType
+import com.patrickchow.financeforsuccess.dataclass.getModalSheetTypeIndex
+import com.patrickchow.financeforsuccess.dataclass.listOfModalSheetInformation
 import com.patrickchow.financeforsuccess.ui.common.CustomAppBar
 import com.patrickchow.financeforsuccess.ui.common.CalculateButton
 import com.patrickchow.financeforsuccess.ui.common.CalculatedText
@@ -41,6 +44,7 @@ fun TipsCalculatorScreen(calculatorItem: CalculatorItem, navController: NavContr
                 label = "Bill Amount",
                 keyboardType = KeyboardType.Number,
                 tooltipMessage = "Enter the total bill amount.",
+                modalSheetInfo = listOfModalSheetInformation[getModalSheetTypeIndex(ModalSheetType.Bill)],
             )
 
             Spacer(modifier = Modifier.height(8.dp))
@@ -51,6 +55,7 @@ fun TipsCalculatorScreen(calculatorItem: CalculatorItem, navController: NavContr
                 label = "Tip Percentage (%)",
                 keyboardType = KeyboardType.Number,
                 tooltipMessage = "Enter the desired tip percentage.",
+                modalSheetInfo = listOfModalSheetInformation[getModalSheetTypeIndex(ModalSheetType.TipPercent)],
             )
 
             Spacer(modifier = Modifier.height(16.dp))
