@@ -6,6 +6,7 @@ import androidx.compose.runtime.State
 import com.patrickchow.financeforsuccess.util.CustomRegex
 import com.patrickchow.financeforsuccess.util.MathFormulas
 
+// This functionality performs both interest and compounding interest (Future Value)
 class InterestCalculatorViewModel : ViewModel() {
 
     private var _principal = mutableStateOf("")

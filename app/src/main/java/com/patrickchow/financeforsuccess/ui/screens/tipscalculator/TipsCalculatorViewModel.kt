@@ -1,4 +1,4 @@
-package com.patrickchow.financeforsuccess.ui.screens.tipsCalculator
+package com.patrickchow.financeforsuccess.ui.screens.tipscalculator
 
 import androidx.lifecycle.ViewModel
 import androidx.compose.runtime.mutableStateOf

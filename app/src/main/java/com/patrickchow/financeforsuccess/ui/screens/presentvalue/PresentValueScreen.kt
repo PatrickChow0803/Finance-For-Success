@@ -1,4 +1,4 @@
-package com.patrickchow.financeforsuccess.ui.screens.tipsCalculator
+package com.patrickchow.financeforsuccess.ui.screens.presentvalue
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
@@ -10,17 +10,20 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.patrickchow.financeforsuccess.dataclass.CalculatorItem
+import com.patrickchow.financeforsuccess.ui.common.CustomAppBar
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.rememberScrollState
 import com.patrickchow.financeforsuccess.dataclass.ModalSheetType
 import com.patrickchow.financeforsuccess.dataclass.getModalSheetTypeIndex
 import com.patrickchow.financeforsuccess.dataclass.listOfModalSheetInformation
-import com.patrickchow.financeforsuccess.ui.common.CustomAppBar
 import com.patrickchow.financeforsuccess.ui.common.CalculateButton
 import com.patrickchow.financeforsuccess.ui.common.CalculatedText
 import com.patrickchow.financeforsuccess.ui.common.CustomTextField
 
 @Composable
-fun TipsCalculatorScreen(calculatorItem: CalculatorItem, navController: NavController) {
-    val viewModel: TipsCalculatorViewModel = viewModel()
+fun PresentValueScreen(calculatorItem: CalculatorItem, navController: NavController) {
+    val viewModel: PresentValueViewModel = viewModel()
+    val scrollState = rememberScrollState()
 
     Scaffold(
         topBar = {
@@ -34,38 +37,49 @@ fun TipsCalculatorScreen(calculatorItem: CalculatorItem, navController: NavContr
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
-                .padding(16.dp),
+                .padding(16.dp)
+                .verticalScroll(scrollState),
             horizontalAlignment = Alignment.Start,
             verticalArrangement = Arrangement.Top
         ) {
             CustomTextField(
-                value = viewModel.billAmount.value,
-                onValueChange = { viewModel.onBillAmountChange(it) },
-                label = "Bill Amount",
+                value = viewModel.futureValue.value,
+                onValueChange = { viewModel.onFutureValueChange(it) },
+                label = "Future Value",
                 keyboardType = KeyboardType.Number,
-                tooltipMessage = "Enter the total bill amount.",
+                tooltipMessage = "The value you want to calculate the present value for.",
                 modalSheetInfo = listOfModalSheetInformation[getModalSheetTypeIndex(ModalSheetType.Bill)],
             )
 
             Spacer(modifier = Modifier.height(8.dp))
 
             CustomTextField(
-                value = viewModel.tipPercentage.value,
-                onValueChange = { viewModel.onTipPercentageChange(it) },
-                label = "Tip Percentage (%)",
+                value = viewModel.rate.value,
+                onValueChange = { viewModel.onRateChange(it) },
+                label = "Interest Rate (%)",
                 keyboardType = KeyboardType.Number,
-                tooltipMessage = "Enter the desired tip percentage.",
-                modalSheetInfo = listOfModalSheetInformation[getModalSheetTypeIndex(ModalSheetType.TipPercent)],
+                tooltipMessage = "The percentage of interest applied annually.",
+                modalSheetInfo = listOfModalSheetInformation[getModalSheetTypeIndex(ModalSheetType.Interest)],
+            )
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            CustomTextField(
+                value = viewModel.time.value,
+                onValueChange = { viewModel.onTimeChange(it) },
+                label = "Time (years)",
+                keyboardType = KeyboardType.Number,
+                tooltipMessage = "The time period in years.",
+                modalSheetInfo = listOfModalSheetInformation[getModalSheetTypeIndex(ModalSheetType.Time)],
             )
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            CalculateButton(onClick = { viewModel.calculateTip() })
+            CalculateButton(onClick = { viewModel.calculatePresentValue() }, displayText = "Calculate Present Value")
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            CalculatedText(text = "Calculated Tip:", result = viewModel.calculatedTip.value)
-            CalculatedText(text = "Total Amount:", result = viewModel.totalAmount.value)
+            CalculatedText(text = "Calculated Present Value:", result = viewModel.result.value)
         }
     }
 }

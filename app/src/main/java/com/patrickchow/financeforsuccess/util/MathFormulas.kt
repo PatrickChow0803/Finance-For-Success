@@ -12,9 +12,13 @@ class MathFormulas {
             return (p * r * t) / 100
         }
 
-        // Calculate tip
         fun calculateTip(bill: Double, tipPercent: Double): Double {
             return bill * (tipPercent / 100)
+        }
+
+        // Present value formula: PV = FV / (1 + r)^t
+        fun calculatePresentValue(fv: Double, rate: Double, time: Double): Double {
+            return fv / Math.pow(1 + rate, time)
         }
     }
 }
