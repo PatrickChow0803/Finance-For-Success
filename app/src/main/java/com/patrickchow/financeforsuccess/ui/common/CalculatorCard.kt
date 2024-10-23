@@ -38,14 +38,10 @@ fun CalculatorCard(functionName: String, imageResId: Int, navController: NavCont
                 painter = painterResource(id = imageResId),
                 contentDescription = functionName,
                 modifier = Modifier
-                    .size(60.dp) // Set the desired size for the image
-                    .padding(end = 16.dp) // Add space between the image and text
+                    .size(60.dp)
+                    .padding(end = 16.dp)
             )
-            Text(
-                text = functionName,
-                fontSize = 18.sp,
-                color = Color.Black
-            )
+            CalculatorCardText(text = functionName)
         }
     }
 }

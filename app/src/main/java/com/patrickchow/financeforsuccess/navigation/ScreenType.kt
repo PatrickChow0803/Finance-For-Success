@@ -5,5 +5,6 @@ enum class ScreenType {
     TipCalculator,
     FutureCalculator,
     PresentCalculator,
+    WSB,
     CurrencyConverter,
 }
