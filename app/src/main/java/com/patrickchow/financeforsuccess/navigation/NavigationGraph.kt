@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.patrickchow.financeforsuccess.ui.RedditScreen
 import com.patrickchow.financeforsuccess.ui.screens.*
 import com.patrickchow.financeforsuccess.ui.screens.futurecalculator.FutureValueScreen
 import com.patrickchow.financeforsuccess.ui.screens.interestcalculator.InterestCalculatorScreen
@@ -49,11 +50,11 @@ fun NavigationGraph(navController: NavHostController) {
             )
         }
         composable(ScreenType.WSB.name) {
-            WIP(
-                calculatorItems[getScreenTypeIndex(
-                    ScreenType.WSB
-                )],
-                navController,
+            RedditScreen(
+//                calculatorItems[getScreenTypeIndex(
+//                    ScreenType.WSB
+//                )],
+//                navController,
             )
         }
         composable(ScreenType.CurrencyConverter.name) {

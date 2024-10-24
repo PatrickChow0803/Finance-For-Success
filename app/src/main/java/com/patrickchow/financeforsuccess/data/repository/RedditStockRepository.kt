@@ -1,12 +1,11 @@
 package com.patrickchow.financeforsuccess.data.repository
 
 import com.patrickchow.financeforsuccess.data.api.RedditApiService
-import com.patrickchow.financeforsuccess.dataclass.RedditStock
-import javax.inject.Inject
+import com.patrickchow.financeforsuccess.ui.screens.reddit.RetrofitClient
 
-class RedditStockRepository @Inject constructor(private val apiService: RedditApiService) {
+class RedditRepository {
 
-    suspend fun getRedditStocks(date: String? = null): List<RedditStock> {
-        return apiService.getRedditStocks(date)
-    }
+    private val apiService: RedditApiService = RetrofitClient.redditApiService
+
+    suspend fun getTopStocks(date: String? = null) = apiService.getTopStocks(date)
 }

@@ -1,36 +1,45 @@
-package com.patrickchow.financeforsuccess.ui.screens.reddit
+package com.patrickchow.financeforsuccess.ui
 
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import com.patrickchow.financeforsuccess.dataclass.RedditStock
-import com.patrickchow.financeforsuccess.ui.viewmodel.RedditStockViewModel
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.patrickchow.financeforsuccess.data.api.StockData
+import com.patrickchow.financeforsuccess.viewmodel.RedditViewModel
 
 @Composable
-fun StockScreen(viewModel: RedditStockViewModel = hiltViewModel()) {
-    val stocks by viewModel.redditStocks.collectAsState()
-    val loading by viewModel.loading.collectAsState()
+fun RedditScreen() {
+    val viewModel: RedditViewModel = viewModel()
+    val stockList by viewModel.stockList.collectAsState()
+    val isLoading by viewModel.isLoading.collectAsState()
 
     LaunchedEffect(Unit) {
-        viewModel.getStocks()  // Initial API call without date
+        viewModel.fetchTopStocks()
     }
 
-    if (loading) {
-        CircularProgressIndicator()
-    } else {
-        LazyColumn {
-            items(stocks) { stock ->
-                StockItem(stock)
+    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+        if (isLoading) {
+            CircularProgressIndicator()
+        } else {
+            LazyColumn {
+                items(stockList) { stock ->
+                    StockItem(stock)
+                }
             }
         }
     }
 }
 
 @Composable
-fun StockItem(stock: RedditStock) {
-    Text("${stock.ticker} - ${stock.sentiment} (${stock.no_of_comments} comments)")
+fun StockItem(stock: StockData) {
+    Column(modifier = Modifier.fillMaxWidth().padding(8.dp)) {
+        Text(text = "Ticker: ${stock.ticker}", style = MaterialTheme.typography.titleMedium)
+        Text(text = "Comments: ${stock.no_of_comments}")
+        Text(text = "Sentiment: ${stock.sentiment}")
+        Text(text = "Score: ${stock.sentiment_score}")
+    }
 }

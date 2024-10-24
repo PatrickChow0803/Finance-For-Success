@@ -1,35 +1,33 @@
-package com.patrickchow.financeforsuccess.ui.viewmodel
+package com.patrickchow.financeforsuccess.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.patrickchow.financeforsuccess.data.repository.RedditStockRepository
-import com.patrickchow.financeforsuccess.dataclass.RedditStock
-import dagger.hilt.android.lifecycle.HiltViewModel
+import com.patrickchow.financeforsuccess.data.api.StockData
+import com.patrickchow.financeforsuccess.data.repository.RedditRepository
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class RedditStockViewModel @Inject constructor(
-    private val repository: RedditStockRepository
-) : ViewModel() {
+class RedditViewModel : ViewModel() {
 
-    private val _redditStocks = MutableStateFlow<List<RedditStock>>(emptyList())
-    val redditStocks: StateFlow<List<RedditStock>> = _redditStocks
+    private val repository = RedditRepository()
 
-    private val _loading = MutableStateFlow(false)
-    val loading: StateFlow<Boolean> = _loading
+    private val _stockList = MutableStateFlow<List<StockData>>(emptyList())
+    val stockList: StateFlow<List<StockData>> get() = _stockList
 
-    fun getStocks(date: String? = null) {
+    private val _isLoading = MutableStateFlow(false)
+    val isLoading: StateFlow<Boolean> get() = _isLoading
+
+    fun fetchTopStocks(date: String? = null) {
         viewModelScope.launch {
-            _loading.value = true
+            _isLoading.value = true
             try {
-                _redditStocks.value = repository.getRedditStocks(date)
+                val result = repository.getTopStocks(date)
+                _stockList.value = result
             } catch (e: Exception) {
-                _redditStocks.value = emptyList()
+                e.printStackTrace()
             } finally {
-                _loading.value = false
+                _isLoading.value = false
             }
         }
     }
