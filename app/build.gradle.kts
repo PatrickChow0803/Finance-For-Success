@@ -41,6 +41,13 @@ android {
 
 dependencies {
 
+    implementation(libs.square.retrofit)
+    implementation(libs.square.converter.gson)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.hilt)
+    implementation(libs.hiltCompiler)
+
     implementation(libs.androidx.navigation.compose)
 
     implementation(libs.androidx.core.ktx)
