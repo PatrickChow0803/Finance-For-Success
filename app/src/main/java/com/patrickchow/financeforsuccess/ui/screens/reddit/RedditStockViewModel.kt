@@ -18,13 +18,18 @@ class RedditViewModel : ViewModel() {
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> get() = _isLoading
 
+    private val _errorMessage = MutableStateFlow<String?>(null)
+    val errorMessage: StateFlow<String?> get() = _errorMessage
+
     fun fetchTopStocks(date: String? = null) {
         viewModelScope.launch {
             _isLoading.value = true
+            _errorMessage.value = null
             try {
                 val result = repository.getTopStocks(date)
                 _stockList.value = result
             } catch (e: Exception) {
+                _errorMessage.value = "Error fetching stocks"
                 e.printStackTrace()
             } finally {
                 _isLoading.value = false

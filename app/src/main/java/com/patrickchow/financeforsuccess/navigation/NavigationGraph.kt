@@ -51,10 +51,10 @@ fun NavigationGraph(navController: NavHostController) {
         }
         composable(ScreenType.WSB.name) {
             RedditScreen(
-//                calculatorItems[getScreenTypeIndex(
-//                    ScreenType.WSB
-//                )],
-//                navController,
+                calculatorItems[getScreenTypeIndex(
+                    ScreenType.WSB
+                )],
+                navController,
             )
         }
         composable(ScreenType.CurrencyConverter.name) {

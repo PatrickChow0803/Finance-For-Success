@@ -45,6 +45,7 @@ dependencies {
 
     implementation(libs.square.retrofit)
     implementation(libs.square.converter.gson)
+    implementation(libs.square.logging.interceptor)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
 
