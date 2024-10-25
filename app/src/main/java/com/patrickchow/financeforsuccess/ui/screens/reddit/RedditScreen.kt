@@ -14,6 +14,7 @@ import com.patrickchow.financeforsuccess.dataclass.CalculatorItem
 import com.patrickchow.financeforsuccess.ui.common.AppScaffold
 import com.patrickchow.financeforsuccess.ui.screens.reddit.StockItem
 import com.patrickchow.financeforsuccess.viewmodel.RedditViewModel
+
 @Composable
 fun RedditScreen(calculatorItem: CalculatorItem, navController: NavController) {
     val viewModel: RedditViewModel = viewModel()
@@ -27,18 +28,19 @@ fun RedditScreen(calculatorItem: CalculatorItem, navController: NavController) {
         useScrollableColumn = false,
     ) {
         Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.TopStart
+            modifier = Modifier.fillMaxSize()
         ) {
-            LazyColumn(
-                modifier = Modifier.fillMaxWidth(),
-                contentPadding = PaddingValues(bottom = 16.dp)
-            ) {
-                items(stockList) { stock ->
-                    StockItem(stock)
+            // Show the LazyColumn only when not loading and there's no error message
+            if (!isLoading && errorMessage == null) {
+                LazyColumn(
+                    modifier = Modifier.fillMaxWidth(),
+                    contentPadding = PaddingValues(bottom = 16.dp)
+                ) {
+                    items(stockList) { stock ->
+                        StockItem(stock)
+                    }
                 }
             }
-
             if (isLoading) {
                 Box(
                     modifier = Modifier
@@ -47,13 +49,14 @@ fun RedditScreen(calculatorItem: CalculatorItem, navController: NavController) {
                 ) {
                     CircularProgressIndicator()
                 }
-            } else if (errorMessage != null) {
+            }
+            if (!isLoading && errorMessage != null) {
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
                         .wrapContentSize(Alignment.Center)
                 ) {
-                    // TODO: Make string resource
+                    // TODO: Make String resource
                     Text(
                         text = errorMessage ?: "Unknown error, please try again later",
                         style = MaterialTheme.typography.bodyMedium,
@@ -68,3 +71,4 @@ fun RedditScreen(calculatorItem: CalculatorItem, navController: NavController) {
         viewModel.fetchTopStocks()
     }
 }
+

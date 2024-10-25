@@ -28,8 +28,9 @@ class RedditViewModel : ViewModel() {
             try {
                 val result = repository.getTopStocks(date)
                 _stockList.value = result
+                _errorMessage.value = null
             } catch (e: Exception) {
-                _errorMessage.value = "Error fetching stocks"
+                _errorMessage.value = "Error fetching stocks: ${e.message}"
                 e.printStackTrace()
             } finally {
                 _isLoading.value = false
