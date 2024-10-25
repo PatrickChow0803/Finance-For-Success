@@ -33,6 +33,7 @@ fun StockItem(stock: StockData) {
             horizontalArrangement = Arrangement.SpaceBetween // Space between text and image
         ) {
             Column(modifier = Modifier.weight(1f)) { // Use weight to allow column to fill available space
+                // TODO: Make string resources
                 Text(
                     text = "Ticker: ${stock.ticker}",
                     style = MaterialTheme.typography.titleMedium,
