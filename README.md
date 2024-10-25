@@ -1,15 +1,15 @@
 # Finance-For-Success
-Includes a bunch of calculators to help achieve financial success
+Includes a bunch of calculators to help achieve financial success  
 
 ![Home](https://github.com/user-attachments/assets/66afbf0a-bd34-4a95-81bb-a4b44ba4be2e)
-
-Includes an API call to get WSB sentiment on trending stocks.
+  
+Includes an API call to get WSB sentiment on trending stocks.  
 ![wsb](https://github.com/user-attachments/assets/52472576-5db0-4ed7-8197-7d1930bf4ec9)
-
-Various calculators to help you figure out your money.
+  
+Various calculators to help you figure out your money.  
 ![Future Value](https://github.com/user-attachments/assets/43a0b8a9-fbad-4eb1-87a8-39053dd82221)
-
-Beginner Friendly. Every field includes descriptions to help you whenever you get lost.
+  
+Beginner Friendly. Every field includes descriptions to help you whenever you get lost.  
 ![Future Value help](https://github.com/user-attachments/assets/0a0d223f-18e5-402a-a4ee-1d161cf65322)
 
 
