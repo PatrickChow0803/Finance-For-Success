@@ -12,7 +12,6 @@ import androidx.navigation.compose.rememberNavController
 import com.patrickchow.financeforsuccess.navigation.NavigationGraph
 import com.patrickchow.financeforsuccess.ui.theme.FinanceForSuccessTheme
 
-
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -10,8 +10,16 @@ activityCompose = "1.9.3"
 composeBom = "2024.04.01"
 engageCore = "1.5.5"
 navigationCompose = "2.8.3"
+squareRetrofit = "2.11.0"
+kotlinCoroutine = "1.7.3"
 
 [libraries]
+square-retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "squareRetrofit" }
+square-converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "squareRetrofit" }
+square-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version = "4.12.0" }
+kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinCoroutine" }
+kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlinCoroutine" }
+
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -33,4 +41,3 @@ engage-core = { group = "com.google.android.engage", name = "engage-core", versi
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-

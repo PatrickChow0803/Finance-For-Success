@@ -32,6 +32,11 @@ val calculatorItems = listOf(
         screen = ScreenType.PresentCalculator
     ),
     CalculatorItem(
+        title = "WSB Watch: Stocks",
+        icon = R.drawable.wsb,
+        screen = ScreenType.WSB
+    ),
+    CalculatorItem(
         title = "Currency Exchange",
         icon = R.drawable.exchange,
         screen = ScreenType.CurrencyConverter

@@ -16,6 +16,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled = true
     }
 
     buildTypes {
@@ -40,6 +41,12 @@ android {
 }
 
 dependencies {
+
+    implementation(libs.square.retrofit)
+    implementation(libs.square.converter.gson)
+    implementation(libs.square.logging.interceptor)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
 
     implementation(libs.androidx.navigation.compose)
 
